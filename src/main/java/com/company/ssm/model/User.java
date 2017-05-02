@@ -1,4 +1,4 @@
-package com.heitian.ssm.model;
+package com.company.ssm.model;
 
 import java.util.Date;
 
@@ -6,7 +6,6 @@ import java.util.Date;
  * Created by Zhangxq on 2016/7/15.
  */
 public class User {
-
     private Long id;
     private String userName;
     private String userPhone;

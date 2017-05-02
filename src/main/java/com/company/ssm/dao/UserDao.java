@@ -1,9 +1,10 @@
-package com.heitian.ssm.dao;
+package com.company.ssm.dao;
 
-import com.heitian.ssm.model.User;
+import com.company.ssm.model.User;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
+import javax.inject.Named;
 import java.util.List;
 
 /**
