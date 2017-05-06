@@ -11,11 +11,13 @@
 <html>
 <head>
     <title>用户信息列表</title>
+    <script src="<c:url value="/js/main.js"></c:url>"></script>
 </head>
 <body>
     <c:if test="${!empty userList}">
         <c:forEach var="user" items="${userList}">
-            姓名：${user.userName} &nbsp;&nbsp;手机号：${user.userPhone} &nbsp;&nbsp;邮箱：${user.userEmail} &nbsp;&nbsp;<br>
+            姓名：${user.userName} &nbsp;&nbsp;手机号：${user.userPhone} &nbsp;&nbsp;邮箱：${user.userEmail} &nbsp;&nbsp;
+            密码：${user.userPwd}<br>
         </c:forEach>
     </c:if>
 </body>

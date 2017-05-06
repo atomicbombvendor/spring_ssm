@@ -1,4 +1,4 @@
-package com.company.ssm.service.impl;
+package com.company.ssm.service;
 
 import com.company.ssm.dao.StudentDao;
 import com.company.ssm.model.Student;

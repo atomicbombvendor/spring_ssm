@@ -1,7 +1,7 @@
 package com.company.ssm.controller;
 
 import com.company.ssm.model.Student;
-import com.company.ssm.service.impl.StudentService;
+import com.company.ssm.service.StudentService;
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

@@ -1,10 +1,12 @@
 package com.company.ssm.model;
 
+import javax.inject.Named;
 import java.util.Date;
 
 /**
  * Created by Zhangxq on 2016/7/15.
  */
+@Named("t_user")
 public class User {
     private Long id;
     private String userName;
