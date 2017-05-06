@@ -2,19 +2,11 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<%
-    String path = request.getContextPath();
-    String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path;
-%>
+
 <html>
 <head>
-    <base href="<%=basePath%>">
     <title>主页</title>
-    <%--<script src="${pageContext.request.contextPath}/js/main.js"></script>--%>
-    <%--<script src="<%=basePath%>/js/main.js"></script>--%>
     <script src="<c:url value="/js/main.js"></c:url>"></script>
-    <!-- 以上三种方法都可以解决问题，但是要保证js目录不能在WEB-INF下面，因为无法方法-->
-    <%--<link href="/res/css/main.css" rel="stylesheet">--%>
     </head>
 <body>
 <h2>Hello World!</h2>
