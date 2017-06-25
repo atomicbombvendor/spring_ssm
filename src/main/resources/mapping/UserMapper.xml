@@ -30,11 +30,11 @@
     </select>
 
     <select id="selectUserByName" resultMap="UserBaseMap">
-        SELECT Top 1 user_name From t_user WHERE user_name = #{user_name};
+        SELECT user_name From t_user WHERE user_name = #{user_name};
     </select>
 
     <select id="selectUserByEmail" resultMap="UserBaseMap">
-        SELECT Top 1 user_email From t_user WHERE user_email = #{user_email};
+        SELECT user_email From t_user WHERE user_email = #{user_email};
     </select>
 
     <insert id="addNewUser" parameterType="com.company.ssm.model.User" keyProperty="id">

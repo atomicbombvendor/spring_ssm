@@ -35,13 +35,21 @@ public class UserService {
     }
 
     public boolean isUserNameExists(String user_name){
-        log.info(String.format(ServiceOperation.USER_SERIVCE_SELECTBY.getMessage(),"userName:"+user_name));
-        return user_name.equals(userDao.selectUserByName(user_name).getUserName());
+        log.info(String.format(ServiceOperation.USER_SERIVCE_SELECTBY.getMessage(),"userName",user_name));
+        User user = userDao.selectUserByName(user_name);
+        if(user == null){
+            return false;
+        }
+        return user_name.equals(user.getUserName());
     }
 
     public boolean isEmailExists(String email){
-        log.info(String.format(ServiceOperation.USER_SERIVCE_SELECTBY.getMessage()," email:"+email));
-        return email.equals(userDao.selectUserByName(email));
+        log.info(String.format(ServiceOperation.USER_SERIVCE_SELECTBY.getMessage()," email",email));
+        User user = userDao.selectUserByName(email);
+        if(user == null){
+            return false;
+        }
+        return email.equals(user.getUserEmail());
     }
 
     public List<User> getAllUser() {
@@ -51,8 +59,8 @@ public class UserService {
     public int addNewUser(String user_name, String user_email,
                           String md5psd){
         log.info(String.format(ServiceOperation.USER_SERVICE_ADDUSERE.getMessage(),user_name));
-        boolean NameIsExists = false;
-        boolean EmailIsExists = false;
+        boolean NameIsExists;
+        boolean EmailIsExists;
         NameIsExists = isUserNameExists(user_name);
         EmailIsExists = isEmailExists(user_email);
 

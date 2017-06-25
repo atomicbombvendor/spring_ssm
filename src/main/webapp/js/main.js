@@ -25,7 +25,7 @@ function bitTotal(num){
 }
 //返回强度级别
 function checkStrong(sPW){
-    if (sPW.length<6)
+    if (sPW.length<0)
         return 0; //密码太短，不检测级别
     Modes=0;
     for (i=0;i<sPW.length;i++){

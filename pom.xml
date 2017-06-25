@@ -289,6 +289,13 @@
       <artifactId>commons-codec</artifactId>
       <version>1.9</version>
     </dependency>
+
+    <!--&lt;!&ndash;bootstrap依赖&ndash;&gt;-->
+    <!--<dependency>-->
+      <!--<groupId>org.webjars</groupId>-->
+      <!--<artifactId>bootstrap</artifactId>-->
+      <!--<version>3.3.5</version>-->
+    <!--</dependency>-->
   </dependencies>
 
   <build>
