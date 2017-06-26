@@ -5,7 +5,7 @@ public enum OperationEnum {
     UPDATE_USER(1002,"update user:%s"),
     DELETE_USER(1003,"delete userId:%d"),
 
-    SHOW_ALL_USERS(1004,"show all users");
+    SHOW_ALL_USERS(1004,"show all Users");
     private String message;
     private int key;
 

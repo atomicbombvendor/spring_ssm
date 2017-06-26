@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.company.ssm.dao.UsersDao">
+    <!--           name                model-->
+    <resultMap id="BlogBaseDao" type="com.company.ssm.model.Users">
+        <!--主键  字段名 类属性名   -->
+        <id column="userId" property="userId" jdbcType="BIGINT"/>
+        <result column="userName" property="userName" jdbcType="VARCHAR"/>
+        <result column="user_psd" property="userPsd" jdbcType="VARCHAR"/>
+        <result column="regtime" property="regTime" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+    <select id="getAllUsers" resultMap="UsersBaseDao">
+        SELECT * FROM USERS
+    </select>
+</mapper>

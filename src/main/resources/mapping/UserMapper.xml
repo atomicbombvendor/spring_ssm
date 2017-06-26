@@ -4,12 +4,12 @@
 
     <resultMap id="UserBaseMap" type="com.company.ssm.model.User">
         <id column="id" property="id" jdbcType="BIGINT"/>
-        <result column="user_name" property="userName" jdbcType="VARCHAR"/>
+        <result column="userName" property="userName" jdbcType="VARCHAR"/>
         <result column="user_phone" property="userPhone" jdbcType="VARCHAR"/>
-        <result column="user_email" property="userEmail" jdbcType="VARCHAR"/>
+        <result column="userEmail" property="userEmail" jdbcType="VARCHAR"/>
         <result column="user_pwd" property="userPwd" jdbcType="VARCHAR"/>
         <result column="pwd_salt" property="pwdSalt" jdbcType="VARCHAR"/>
-        <result column="create_time" property="createTime" jdbcType="DATE"/>
+        <result column="createTime" property="createTime" jdbcType="DATE"/>
         <result column="modify_time" property="modifyTime" jdbcType="DATE"/>
         <result column="is_delete" property="isDelete" jdbcType="SMALLINT"></result>
     </resultMap>
@@ -21,7 +21,7 @@
 
     <select id="selectUserByPhoneOrEmail" resultMap="UserBaseMap">
         SELECT * FROM t_user
-        WHERE user_email = #{emailOrPhone} OR user_phone = #{emailOrPhone}
+        WHERE userEmail = #{emailOrPhone} OR user_phone = #{emailOrPhone}
         AND user_state = #{state}
     </select>
 
@@ -30,19 +30,19 @@
     </select>
 
     <select id="selectUserByName" resultMap="UserBaseMap">
-        SELECT user_name From t_user WHERE user_name = #{user_name};
+        SELECT userName From t_user WHERE userName = #{userName};
     </select>
 
     <select id="selectUserByEmail" resultMap="UserBaseMap">
-        SELECT user_email From t_user WHERE user_email = #{user_email};
+        SELECT userEmail From t_user WHERE userEmail = #{userEmail};
     </select>
 
     <insert id="addNewUser" parameterType="com.company.ssm.model.User" keyProperty="id">
     <!-- 2. parameterType （可选配置, 默认为mybatis自动选择处理）
 将要传入语句的参数的完全限定类名或别名， 如果不配置，mybatis会通过ParameterHandler 根据参数类型默认选择合适的typeHandler进行处理
 parameterType 主要指定参数类型，可以是int, short, long, string等类型，也可以是复杂类型（如对象） -->
-      INSERT INTO t_user(user_name,user_email,user_pwd,create_time,modify_time,is_delete)
-        VALUES (#{user_name}, #{user_email}, #{user_pwd},CURRENT_TIMESTAMP ,CURRENT_TIMESTAMP ,0);
+      INSERT INTO t_user(userName,userEmail,user_pwd,createTime,modify_time,is_delete)
+        VALUES (#{userName}, #{userEmail}, #{user_pwd},CURRENT_TIMESTAMP ,CURRENT_TIMESTAMP ,0);
     </insert>
 
 </mapper>
