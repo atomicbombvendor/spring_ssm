@@ -1,8 +1,11 @@
 package com.company.ssm.model;
 
+import javax.inject.Named;
+
 /**
  * Created by ZZ on 2017/5/4.
  */
+@Named("students")
 public class Student {
     private int sid;
     private String name;

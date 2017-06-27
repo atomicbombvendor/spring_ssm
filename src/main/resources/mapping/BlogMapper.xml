@@ -7,19 +7,22 @@
         <result column="user_id" property="userId" jdbcType="BIGINT"/>
         <result column="title" property="title" jdbcType="VARCHAR"/>
         <result column="author" property="author" jdbcType="VARCHAR"/>
-        <result column="type" property="type" jdbcType="INT"/>
+        <result column="type" property="type" jdbcType="INTEGER"/>
         <result column="loadURL" property="loadURL" jdbcType="VARCHAR"/>
         <result column="label" property="label" jdbcType="VARCHAR"/>
         <result column="decoration" property="decoration" jdbcType="VARCHAR"/>
         <result column="content" property="content" jdbcType="VARCHAR"/>
         <result column="create_time" property="createTime" jdbcType="TIMESTAMP"></result>
         <result column="alter_time" property="updateTime" jdbcType="TIMESTAMP"></result>
-        <result column="state" property="state" jdbcType="INT"></result>
+        <result column="state" property="state" jdbcType="INTEGER"></result>
     </resultMap>
 
     <select id="selectAllBlog" resultMap="BlogBaseMap">
         SELECT * FROM DB_SSM.BLOG
     </select>
 
+    <select id="getAllBlog" resultMap="BlogBaseMap">
+        SELECT * FROM DB_SSM.BLOG
+    </select>
 
 </mapper>

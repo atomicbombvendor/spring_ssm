@@ -6,7 +6,7 @@
         <!--主键  字段名 类属性名   -->
         <id column="post_id" property="postId" jdbcType="BIGINT"/>
         <result column="user_id" property="userId" jdbcType="BIGINT"/>
-        <result column="tid" property="tid" jdbcType="INT"/>
+        <result column="tid" property="tid" jdbcType="INTEGER"/>
         <result column="content" property="content" jdbcType="VARCHAR"/>
         <result column="respond_id" property="respondId" jdbcType="BIGINT"/>
         <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>

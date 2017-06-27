@@ -11,4 +11,6 @@ import java.util.List;
 @Repository
 public interface BlogDao {
     List<Blog> getAllBlog();
+
+    List<Blog> selectAllBlog();
 }

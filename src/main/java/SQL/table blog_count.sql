@@ -1,8 +1,0 @@
-DROP TABLE IF EXISTS blog_count;
-
-CREATE TABLE blog_count(
-tid BIGINT PRIMARY KEY,
-readCount BIGINT DEFAULT 0,
-upVote BIGINT DEFAULT 0,
-FOREIGN KEY(tid) REFERENCES blog(tid)
-);

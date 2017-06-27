@@ -1,7 +1,7 @@
 /*
 Navicat MySQL Data Transfer
 
-Source Server         : root
+Source Server         : mysql
 Source Server Version : 50711
 Source Host           : localhost:3306
 Source Database       : db_ssm
@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50711
 File Encoding         : 65001
 
-Date: 2017-05-04 17:42:11
+Date: 2017-06-27 21:46:16
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -26,6 +26,8 @@ CREATE TABLE `students` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
-
-INSERT INTO `students` (`id`, `name`, `sex`) VALUES (1, 'xiaoxiao', 'female');
-INSERT INTO `students` (`id`, `name`, `sex`) VALUES (2, 'mengmeng', 'female');
+-- ----------------------------
+-- Records of students
+-- ----------------------------
+INSERT INTO `students` VALUES ('1', 'xiaoxiao', 'female');
+INSERT INTO `students` VALUES ('2', 'mengmeng', 'female');

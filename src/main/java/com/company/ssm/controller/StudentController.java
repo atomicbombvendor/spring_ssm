@@ -26,7 +26,7 @@ public class StudentController {
     public String showStudent(HttpServletRequest request, Model model){
         List<Student> list = studentService.getAllStudent();
         model.addAttribute("studentList",list);
-        return "showStudent";//return to page name
+        return "jsp/showStudent";//return to page name
     }
 
     @RequestMapping("/deleteStudent")
@@ -34,7 +34,7 @@ public class StudentController {
         System.out.println("Id: "+id);
         List<Student> list = studentService.getAllStudent();
         model.addAttribute("studentList",list);
-        return "showStudent";
+        return "jsp/showStudent";
     }
 
 }

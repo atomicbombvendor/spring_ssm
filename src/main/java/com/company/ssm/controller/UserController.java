@@ -14,10 +14,6 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
-/**
- * Created by Zhangxq on 2016/7/15.
- */
-
 @Controller
 @RequestMapping("/user")
 public class UserController {
@@ -30,7 +26,7 @@ public class UserController {
         log.info(OperationEnum.SHOW_ALL_USERS.getMessage());
         List<User> userList = userService.getAllUser();
         model.addAttribute("userList",userList);
-        return "showUser";
+        return "jsp/showUser";
     }
 
     //@RequestParam获取前台的参数,()中的name要与表单中的控件名一样。或者 @RequestParam String ${parameterName}
