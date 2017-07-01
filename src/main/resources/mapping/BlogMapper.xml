@@ -24,5 +24,14 @@
     <select id="getAllBlog" resultMap="BlogBaseMap">
         SELECT * FROM DB_SSM.BLOG
     </select>
+    <!-- id和方法名相同-->
+    <select id="selectBlogByTid" resultMap="BlogBaseMap">
+        SELECT * FROM db_ssm.blog Where tid=${tid}
+    </select>
+
+    <select id="getBlogDetail" resultType="map">
+    Select blog.*,users.*  from blog inner join users on blog.user_id=users.user_id
+    where blog.tid=${tid}
+    </select>
 
 </mapper>

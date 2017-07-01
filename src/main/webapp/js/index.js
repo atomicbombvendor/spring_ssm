@@ -7,11 +7,11 @@ $(function(){
     $(function () {
         $(window).scroll(function(){
             if ($(window).scrollTop()>100){
-                $("#back-to-top").fadeIn(1500);
+                $("#back-to-top").fadeIn(500);
             }
             else
             {
-                $("#back-to-top").fadeOut(1500);
+                $("#back-to-top").fadeOut(500);
             }
         });
 
@@ -19,11 +19,17 @@ $(function(){
         $("#back-to-top").click(function(){
             //$('body,html').animate({scrollTop:0},1000);
             if ($('html').scrollTop()) {
-                $('html').animate({ scrollTop: 0 }, 1000);
+                $('html').animate({ scrollTop: 0 }, 700);
                 return false;
             }
-            $('body').animate({ scrollTop: 0 }, 1000);
+            $('body').animate({ scrollTop: 0 }, 700);
             return false;
         });
     });
 });
+
+// $.get("navigation.html",function(data){
+//     $("#navicator").html(data);
+// });
+
+// $("#navigation").load("../WEB-INF/navigation/navigation.html");

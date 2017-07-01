@@ -26,7 +26,7 @@
     <div class="container">
         <div class="row">
             <div class="text-center lead">
-                <h1><a href="index.jsp" title="scroll down for your viewing pleasure">Bootstrap 3 模板</a><p class="lead">全屏背景图片主题</p></h1>
+                <h1><a href="blog/showBlog" title="scroll down for your viewing pleasure">Bootstrap 3 模板</a><p class="lead">全屏背景图片主题</p></h1>
             </div>
         </div>
     </div>

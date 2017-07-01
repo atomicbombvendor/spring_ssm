@@ -11,7 +11,7 @@ p#back-to-top {
 p#back-to-top a{
     text-align:center;
     text-decoration:none;
-    color:#d1d1d1;
+    color:#449d44;
     display:block;
     width:64px;
     /*使用CSS3中的transition属性给跳转链接中的文字添加渐变效果*/

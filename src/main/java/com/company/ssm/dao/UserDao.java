@@ -20,6 +20,11 @@ public interface UserDao {
 
     List<User> selectAllUser();
 
+    /**
+     * user_name 对应于mapper中的sql参数
+     * @param user_name userName
+     * @return User
+     */
     User selectUserByName(@Param("user_name") String user_name);
 
     User selectUserByEmail(@Param("user_email") String user_email);
