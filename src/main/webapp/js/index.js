@@ -2,6 +2,7 @@
 /**
  * Created by ZZ on 2017/6/25.
  */
+// JQ function
 $(function(){
     //当滚动条的位置处于距顶部100像素以下时，跳转链接出现，否则消失
     $(function () {
@@ -28,8 +29,9 @@ $(function(){
     });
 });
 
-// $.get("navigation.html",function(data){
-//     $("#navicator").html(data);
-// });
+// JS function
+function nextClick2(currentPage, list) {
+    alert(currentPage);
+    alert(list.size);
+}
 
-// $("#navigation").load("../WEB-INF/navigation/navigation.html");

@@ -23,6 +23,7 @@ import java.util.Map;
 @RequestMapping("/blog")
 public class BlogController {
     Logger log = Logger.getLogger(BlogController.class);
+    private static int pageSize=5;
 
     @Resource
     private BlogService blogService;
@@ -30,9 +31,12 @@ public class BlogController {
     @RequestMapping("/showBlog")
     public String showBlog(Model model){
         log.info(OperationEnum.SHOW_ALL_BLOG.getMessage());
-        List<Blog> BlogList = blogService.getAllBlog();
-        log.info("BlogList size is "+BlogList.size());
-        model.addAttribute("blogList",BlogList);
+        List<Blog> blogList = blogService.getAllBlog();
+        int value = blogList.size()%pageSize;
+        int pageNum = value==0?value:value+1;//count of pages
+        log.info("BlogList size is "+blogList.size());
+        model.addAttribute("blogList",blogList);
+        model.addAttribute("pageNum",pageNum);
         return "front/showBlog";
     }
 
@@ -40,7 +44,6 @@ public class BlogController {
     public String showBlogDetail(@RequestParam int tid, Model model){
         log.info("show blog detail");
         Map<String, Object> resultMap = blogService.getBlogDetailByTid(tid);
-
         Map<String, String> resultTest = new HashMap<>();
         resultMap.put("key1","value1");
         resultMap.put("key2","value2");

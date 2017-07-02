@@ -1,3 +1,6 @@
+<%@ page language="java" import="java.*,java.util.*"
+         contentType="text/html;charset=UTF-8" pageEncoding="UTF-8"%>
+<!-- 通过这种方式来引用子页面-->
 <header id="top">
     <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
         <div class="container-fluid">
@@ -42,4 +45,5 @@
         </div>
     </nav>
 </header>
+
 
