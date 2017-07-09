@@ -15,12 +15,10 @@ html * {
 }
 
 body {
-  /*font-size: 100%;*/
-  /*color: #7f8c97;*/
+  font-size: 150%;
+  color: #7f8c97;
   background-color: #f9f9f9;
 }
-
-
 
 img {
   max-width: 100%;
@@ -31,7 +29,7 @@ h2.top_title {
   background: none;
   text-align: center;
   line-height: 32px;
-  font-size: 20px;
+  font-size: 25px;
 }
 
 /* -------------------------------- 
@@ -179,7 +177,7 @@ Main components
 }
 .cd-timeline-content p, .cd-timeline-content .cd-read-more, .cd-timeline-content .cd-date {
   font-size: 13px;
-  font-size: 0.8125rem;
+  font-size: 1.2rem;
 }
 .cd-timeline-content .cd-read-more, .cd-timeline-content .cd-date {
   display: inline-block;
@@ -216,16 +214,16 @@ a.cd-read-more:hover{text-decoration:none; background-color: #424242;  }
 }
 @media only screen and (min-width: 768px) {
   .cd-timeline-content h2 {
-    font-size: 20px;
-    font-size: 1.25rem;
+    font-size: 25px;
+    font-size: 1.4rem;
   }
   .cd-timeline-content p {
-    font-size: 16px;
-    font-size: 1rem;
+    font-size: 20px;
+    font-size: 1.4rem;
   }
   .cd-timeline-content .cd-read-more, .cd-timeline-content .cd-date {
-    font-size: 14px;
-    font-size: 0.875rem;
+    font-size: 20px;
+    font-size: 1.4em;
   }
 }
 @media only screen and (min-width: 1170px) {
@@ -248,8 +246,8 @@ a.cd-read-more:hover{text-decoration:none; background-color: #424242;  }
     width: 100%;
     left: 122%;
     top: 6px;
-    font-size: 16px;
-    font-size: 1rem;
+    font-size: 20px;
+    font-size: 1.4rem;
   }
   .cd-timeline-block:nth-child(even) .cd-timeline-content {
     float: right;
