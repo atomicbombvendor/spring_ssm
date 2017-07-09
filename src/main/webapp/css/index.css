@@ -39,3 +39,29 @@ p#back-to-top a span{
     /*background:transparent url(../resource/gototop.png) no-repeat -25px -290px;*/
     border:1px solid #adadad;
 }
+
+p.post-body{
+     text-align: justify;
+     font-family: 'Lato',"PingFang SC","Microsoft YaHei",sans-serif;
+ }
+h2.post-body{
+    text-align: justify;
+    font-family: 'Lato',"PingFang SC","Microsoft YaHei",sans-serif;
+}
+
+table{
+    table-layout:fixed;
+}
+
+.blogTitle{
+    text-align: center
+}
+
+table td p .content{
+    overflow : hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+}
+

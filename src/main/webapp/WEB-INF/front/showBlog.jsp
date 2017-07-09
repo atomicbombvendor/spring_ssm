@@ -11,19 +11,17 @@
     <!-- 引用bootstrap-->
     <!-- 引用css文件-->
     <link rel="stylesheet" href="../bootstrap/css/bootstrap.min.css">
-    <!-- jQuery (Bootstrap 的 JavaScript 插件需要引入 jQuery) -->
+    <!-- jQuery (Bootstrap �JavaScript 插件需要引�jQuery) -->
     <script src="../bootstrap/js/jquery-3.2.1.min.js"></script>
-    <!-- 包括所有已编译的插件 -->
+    <!-- 包括所有已编译的插�-->
     <script src="../bootstrap/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="../css/index.css">
     <script src="../js/index.js"></script>
 </head>
 <body>
 <%@ include file="../navigation/navigation.jsp" %>
-<a href="../../test.html" >ddd</a>
-<div class="navigation"></div>
 <div class="row">
-    <div class="col-md-6 col-md-offset-3">
+    <div class="col-md-8 col-md-offset-2">
         <hr/>
         <table id="blogTable">
             <thead>
@@ -35,8 +33,10 @@
                 <c:forEach var="Blog" items="${blogList}">
                     <tr>
                         <td>
-                            <h2 class="text-center"><a href="showBlogDetail?tid=${Blog.tid}">${Blog.title}</a></h2>
-                            <p>${Blog.content}</p>
+                            <h2 class="blogTitle"><a href="showBlogDetail?tid=${Blog.tid}">${Blog.title}</a></h2>
+                            <em>${Blog.content.substring(0, Blog.content.indexOf("</p>")+4)}</em>
+                            <div><a href="showBlogDetail?tid=${Blog.tid}">阅读全文>></a> </div>
+                            <hr/>
                         </td>
                     </tr>
                 </c:forEach>
@@ -54,9 +54,9 @@
         <ul class="pager">
             <li class="previous"><a href="#" onclick="prePage()">&larr;
                 Older</a></li>
-            <li>共有 <span id="spanTotalInfo">${blogList.size()}</span> 条博客</li>
-            <li>当前第 <span id="spanPageNum" value="1">1</span> 页</li>
-            <li>共 <span id="spanTotalPage">${pageNum}</span>页</li>
+            <li>共有 <span id="spanTotalInfo">${blogList.size()}</span> 条博�/li>
+            <li>当前�<span id="spanPageNum" value="1">1</span> �/li>
+            <li>�<span id="spanTotalPage">${pageNum}</span>�/li>
             <li class="next"><a onclick="test()">Newer &rarr;</a></li>
         </ul>
     </div>

@@ -16,20 +16,16 @@
             </div>
             <div class="collapse navbar-collapse" id="example-navbar-collapse">
                 <ul class="nav navbar-nav">
-                    <li class="active"><a href="#">iOS</a></li>
-                    <li><a href="#">SVN</a></li>
+                    <li><a href="labelBlog?labelName=Java">Java</a></li>
+                    <li><a href="labelBlog?labelName=测试">测试</a></li>
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                            Java <b class="caret"></b>
+                            Nothing <b class="caret"></b>
                         </a>
                         <ul class="dropdown-menu">
-                            <li><a href="#">jmeter</a></li>
-                            <li><a href="#">EJB</a></li>
-                            <li><a href="#">Jasper Report</a></li>
+                            <li><a href="#">Nothing</a></li>
                             <li class="divider"></li>
-                            <li><a href="#">分离的链接</a></li>
-                            <li class="divider"></li>
-                            <li><a href="#">另一个分离的链接</a></li>
+                            <li><a href="#">Nothing</a></li>
                         </ul>
                     </li>
                 </ul>
@@ -37,7 +33,7 @@
                     <div class="form-group">
                         <input type="text" class="form-control" placeholder="Search">
                     </div>
-                    <button type="submit" class="btn btn-default btn-sm">提交按钮</button>
+                    <button type="submit" class="btn btn-default btn-sm">搜索</button>
                 </form>
             </div>
             <div>

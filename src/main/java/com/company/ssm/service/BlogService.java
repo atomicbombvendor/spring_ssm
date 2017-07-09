@@ -23,7 +23,6 @@ public class BlogService {
     private BlogDao blogDao;
 
     public List<Blog> getAllBlog() {
-        System.out.println("get all blog");
         List<Blog> result = blogDao.getAllBlog();
         if(result == null){
             log.error("blog list is empty");
@@ -43,6 +42,17 @@ public class BlogService {
         Map<String, Object> result = blogDao.getBlogDetail(tid);
         if(result==null) {
             log.error("no blog with tid: "+ tid);
+        }
+        return result;
+    }
+
+    public List<Map<String, Object>> getLabelBlog(String labelName){
+        List<Map<String,Object>> result = blogDao.getLabelBlog(labelName);
+        int size = result.size();
+        if(result==null){
+            log.info("there is no blog that label is "+ labelName);
+        }else{
+            log.info("there have "+size+" blog that label is "+ labelName);
         }
         return result;
     }

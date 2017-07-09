@@ -34,4 +34,8 @@
     where blog.tid=${tid}
     </select>
 
+    <select id="getLabelBlog" resultType="map">
+        Select * FROM blog Where blog.label Like CONCAT('%','${label}','%') Order by alter_time desc
+    </select>
+
 </mapper>

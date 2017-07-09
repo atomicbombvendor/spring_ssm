@@ -12,7 +12,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.annotation.Resource;
 import javax.inject.Named;
+import java.io.UnsupportedEncodingException;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -32,6 +34,10 @@ public class BlogController {
     public String showBlog(Model model){
         log.info(OperationEnum.SHOW_ALL_BLOG.getMessage());
         List<Blog> blogList = blogService.getAllBlog();
+        Iterator it = blogList.iterator();
+        while(it.hasNext()){
+            Blog b = (Blog)it.next();
+        }
         int value = blogList.size()%pageSize;
         int pageNum = value==0?value:value+1;//count of pages
         log.info("BlogList size is "+blogList.size());
@@ -51,5 +57,18 @@ public class BlogController {
         model.addAttribute("resultMap",resultMap);
         model.addAttribute("resultTest",resultTest);
         return "front/blogDetail";
+    }
+
+    @RequestMapping("/labelBlog")
+    public String showLabelBlog(@RequestParam String labelName, Model model) throws UnsupportedEncodingException {
+        byte[] b = labelName.getBytes("ISO-8859-1");
+        String value = new String(b, "UTF-8");
+        System.out.println("search label: "+value);
+        log.info("search label: "+value);
+        log.info("中文测试");
+        List<Map<String, Object>> resultList= blogService.getLabelBlog(value);
+        model.addAttribute("blogList",resultList);
+        model.addAttribute("Label","labelName");
+        return "front/blogTags";
     }
 }
