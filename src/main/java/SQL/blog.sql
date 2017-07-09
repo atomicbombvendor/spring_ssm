@@ -21,17 +21,17 @@ SET FOREIGN_KEY_CHECKS=0;
 DROP TABLE IF EXISTS `blog`;
 CREATE TABLE `blog` (
   `tid` bigint(20) NOT NULL AUTO_INCREMENT,
-  `user_id` bigint(20) NOT NULL,
-  `title` varchar(500) NOT NULL,
-  `author` varchar(20) DEFAULT NULL,
-  `type` int(11) DEFAULT NULL,
-  `loadURL` varchar(500) DEFAULT NULL,
-  `label` varchar(300) DEFAULT NULL,
-  `decoration` varchar(500) DEFAULT NULL,
-  `content` text,
-  `create_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `alter_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `state` int(11) DEFAULT NULL,
+  `user_id` bigint(20) NOT NULL,--用户Id
+  `title` varchar(500) NOT NULL,--标题
+  `author` varchar(20) DEFAULT NULL,--作者
+  `type` int(11) DEFAULT NULL, --类型 转载，原创
+  `loadURL` varchar(500) DEFAULT NULL, --转载地址
+  `label` varchar(300) DEFAULT NULL,  --标签
+  `decoration` varchar(500) DEFAULT NULL, --描述信息
+  `content` text, --内容
+  `create_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP, --创建时间
+  `alter_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP, --修改时间
+  `state` int(11) DEFAULT NULL, --文章状态
   PRIMARY KEY (`tid`),
   KEY `user_id` (`user_id`),
   CONSTRAINT `blog_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`)

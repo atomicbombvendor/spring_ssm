@@ -20,10 +20,8 @@
 </head>
 <body>
 <%@ include file="../navigation/navigation.jsp" %>
-<a href="../test.html">test</a><!--这样可以访问 -->
-<div class="navigation"></div>
 <div class="row">
-    <div class="col-md-6 col-md-offset-3">
+    <div class="col-md-8 col-md-offset-2">
         <hr/>
         <table id="blogTable">
             <thead>
@@ -35,8 +33,10 @@
                 <c:forEach var="Blog" items="${blogList}">
                     <tr>
                         <td>
-                            <h2 class="text-center"><a href="showBlogDetail?tid=${Blog.tid}">${Blog.title}</a></h2>
-                            <p>${Blog.content}</p>
+                            <h2 class="blogTitle"><a href="showBlogDetail?tid=${Blog.tid}">${Blog.title}</a></h2>
+                            <em>${Blog.content.substring(0, Blog.content.indexOf("</p>")+4)}</em>
+                            <div><a href="showBlogDetail?tid=${Blog.tid}">阅读全文>></a> </div>
+                            <hr/>
                         </td>
                     </tr>
                 </c:forEach>
@@ -58,7 +58,6 @@
             <li>当前第 <span id="spanPageNum" value="1">1</span> 页</li>
             <li>共 <span id="spanTotalPage">${pageNum}</span>页</li>
             <li class="next"><a id="nextLink" onclick="nextPage()">Newer &rarr;</a></li>
-            <li class="tet"><a id="test" onclick="alert('test');" class="bth disabled">Newer &rarr;</a></li>
         </ul>
     </div>
 </div>
