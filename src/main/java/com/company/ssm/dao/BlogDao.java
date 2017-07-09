@@ -20,5 +20,5 @@ public interface BlogDao {
 
     Map<String, Object> getBlogDetail(@Param("tid") int tid);
 
-    List<Map<String, Object>> getLabelBlog(@Param("label") String label);
+    List<Blog> getLabelBlog(@Param("label") String label);
 }

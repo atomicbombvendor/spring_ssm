@@ -84,6 +84,11 @@
         <url-pattern>*.html</url-pattern>
     </servlet-mapping>
 
+    <servlet-mapping>
+        <servlet-name>default</servlet-name>
+        <url-pattern>*.svg</url-pattern>
+    </servlet-mapping>
+
     <!--用来将jsp页面的编码统一为utf-8 似乎不行-->
     <!--<jsp-config>-->
     <!--<jsp-property-group>-->

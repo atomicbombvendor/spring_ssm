@@ -46,8 +46,8 @@ public class BlogService {
         return result;
     }
 
-    public List<Map<String, Object>> getLabelBlog(String labelName){
-        List<Map<String,Object>> result = blogDao.getLabelBlog(labelName);
+    public List<Blog> getLabelBlog(String labelName){
+        List<Blog> result = blogDao.getLabelBlog(labelName);
         int size = result.size();
         if(result==null){
             log.info("there is no blog that label is "+ labelName);

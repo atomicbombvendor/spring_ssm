@@ -16,30 +16,29 @@
     <!-- 包括所有已编译的插件 -->
     <script src="../bootstrap/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="../css/index.css">
+    <link rel="stylesheet" href="../css/timeline.css">
     <script src="../js/index.js"></script>
 </head>
 <body>
 <%@ include file="../navigation/navigation.jsp" %>
-<table>
+<h2 class="top_title">${Label}</h2>
+<section id="cd-timeline" class="cd-container">
 <c:if test="${!empty blogList}">
     <c:forEach var="Blog" items="${blogList}">
-        <tr>
-            <td>
-                <h2 class="blogTitle"><a href="showBlogDetail?tid=${Blog.tid}">${Blog.title}</a></h2>
-                <em>${Blog.content.substring(0, Blog.content.indexOf("</p>")+4)}</em>
-                <div><a href="showBlogDetail?tid=${Blog.tid}">阅读全文>></a> </div>
-                <hr/>
-            </td>
-        </tr>
+    <div class="cd-timeline-block">
+        <div class="cd-timeline-img cd-picture">
+            <img src="../img/cd-icon-picture.svg" alt="Picture">
+        </div>
+        <div class="cd-timeline-content">
+            <h2>${Blog.title}</h2>
+            <p>${Blog.content.substring(0, Blog.content.indexOf("</p>")+4)}</p>
+            <a href="showBlogDetail?tid=${Blog.tid}">阅读全文>></a>
+            <span class="cd-date">${Blog.updateTime.toString().substring(0,10)}</span>
+        </div>
+    </div>
     </c:forEach>
 </c:if>
-<c:if test="${empty blogList}">
-    <tr>
-        <td>
-            <p>no blog</p>
-        </td>
-    </tr>
-</c:if>
-</table>
+</section>
+<span style="font-size:16px"><p id="back-to-top"><a href="#top"><span>返回顶部</span></a></p></span>
 </body>
 </html>

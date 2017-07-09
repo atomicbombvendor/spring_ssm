@@ -61,14 +61,13 @@ public class BlogController {
 
     @RequestMapping("/labelBlog")
     public String showLabelBlog(@RequestParam String labelName, Model model) throws UnsupportedEncodingException {
+        //解决前台获取的中文乱码
         byte[] b = labelName.getBytes("ISO-8859-1");
         String value = new String(b, "UTF-8");
-        System.out.println("search label: "+value);
         log.info("search label: "+value);
-        log.info("中文测试");
-        List<Map<String, Object>> resultList= blogService.getLabelBlog(value);
+        List<Blog> resultList= blogService.getLabelBlog(value);
         model.addAttribute("blogList",resultList);
-        model.addAttribute("Label","labelName");
+        model.addAttribute("Label",value);
         return "front/blogTags";
     }
 }
