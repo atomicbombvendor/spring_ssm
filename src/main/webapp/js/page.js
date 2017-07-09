@@ -6,7 +6,7 @@ var pageNum2 = document.getElementById("spanPageNum");//当前页文本框
 var blogTable = document.getElementById("blogTable");
 var perviousLink = document.getElementsByClassName("previous");
 var nextLink = document.getElementsByClassName("next");
-
+<!-- 这些js var的加载顺序要在html渲染了之后才能加载-->
 var pageSize = 5;
 
 var numberRowsInTable = document.getElementById('blogTable').rows.length-1;

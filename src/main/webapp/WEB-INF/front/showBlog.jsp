@@ -20,7 +20,7 @@
 </head>
 <body>
 <%@ include file="../navigation/navigation.jsp" %>
-<a href="../front/test.html">test</a>
+<a href="../../test.html" >ddd</a>
 <div class="navigation"></div>
 <div class="row">
     <div class="col-md-6 col-md-offset-3">
