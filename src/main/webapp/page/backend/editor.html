@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Editor</title>
+    <!-- 第一条引入非必须,第二条是必须引入的-->
+    <!-- /是根目录 -->
+    <script type="text/javascript" src="/editor/ckeditor/ckeditor.js"></script>
+    <script type="text/javascript" src="${ctx}/js/ckeditor/ckeditor_msg.js"></script>
+</head>
+<body>
+<td>
+    <textarea id="opinion" name="opinion" rows="10" cols="38"></textarea>
+    <script type="text/javascript">CKEDITOR.replace("opinion")</script>
+</td>
+</body>
+</html>
