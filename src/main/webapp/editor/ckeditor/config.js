@@ -6,6 +6,14 @@
 CKEDITOR.editorConfig = function( config ) {
 	//Define changes to default configuration here. For example:
 	config.language = 'zh-cn';
-	config.uiColor = '#AADC6E';
-	config.disableNativeSpellChecker=false;
+	config.disableNativeSpellChecker=false; //本地拼写检查
+    config.toolbarCanCollapse = true;//是否可收缩
+    config.resize_enabled = true;
+    config.resize_minHeight = 750;
+    config.resize_minWidth = 750;
+    config.editingBlock = true;
+    config.find_highlight = {
+        element : 'span',
+        styles : { 'background-color' : '#ff0', 'color' : '#00f' }
+    };
 };

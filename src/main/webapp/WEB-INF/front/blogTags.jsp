@@ -27,7 +27,7 @@
     <c:forEach var="Blog" items="${blogList}">
     <div class="cd-timeline-block">
         <div class="cd-timeline-img cd-picture">
-            <img src="../img/cd-icon-picture.svg" alt="Picture">
+            <img src="/resource/img/cd-icon-picture.svg" alt="Picture">
         </div>
         <div class="cd-timeline-content">
             <h2>${Blog.title}</h2>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>登录界面</title>
+    <link href="/css/login.css" rel='stylesheet' type='text/css' />
+    <script type="text/javascript" src="/bootstrap/js/jquery-3.2.1.min.js"></script>
+    <script type="application/x-javascript">
+        addEventListener("load", function() {
+            setTimeout(hideURLbar, 0); }, false);
+        function hideURLbar(){ window.scrollTo(0,1);
+        }
+    </script>
+</head>
+<body>
+<!-----start-main---->
+<div class="main">
+    <div class="login-form">
+        <h1>Member Login</h1>
+        <div class="head">
+            <img src="/img/login-user.png" alt=""/>
+        </div>
+        <form>
+            <input type="text" class="text" value="USERNAME" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'USERNAME';}" >
+            <input type="password" value="Password" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Password';}">
+            <div class="submit">
+                <input type="submit" onclick="myFunction()" value="LOGIN" >
+            </div>
+        </form>
+    </div>
+    <!--//End-login-form-->
+    <!-----start-copyright---->
+    <div class="copy-right">
+    </div>
+    <!-----//end-copyright---->
+</div>
+<!-----//end-main---->
+
+</body>
+</html>
