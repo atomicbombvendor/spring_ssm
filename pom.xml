@@ -295,6 +295,11 @@
       <artifactId>commons-codec</artifactId>
       <version>1.9</version>
     </dependency>
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>4.12</version>
+    </dependency>
     <!--&lt;!&ndash;bootstrap依赖&ndash;&gt;-->
     <!--<dependency>-->
       <!--<groupId>org.webjars</groupId>-->

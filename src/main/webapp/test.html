@@ -4,27 +4,16 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-    <script src="../bootstrap/js/jquery-3.2.1.min.js"></script>
+    <script src="bootstrap/js/jquery-3.2.1.min.js"></script>
+    <script src="js/test.js"></script>
 </head>
 <body>
-<input value="click" name="test" onclick="a()"/>
+<input type="button" value="click" id="content" name="test" onclick="func()">
+<span id="tipMsg">沒有異常</span>
 </body>
-<script>
-    function a() {
-        $.ajax({
-            type : "POST",  //提交方式
-            url : "detail2",//路径
-            data : {
-                "tid" : 1
-            },//数据，这里使用的是Json格式进行传输
-            success : function(result) {//返回数据根据结果进行相应的处理
-                if ( result!=null ) {
-                    alert(resultTest.key1);
-                } else {
-                    $("#tipMsg").text("删除数据失败");
-                }
-            }
-        });
-    }
-</script>
+<!--<script>-->
+    <!--$(document).ready(function() {-->
+        <!--func();-->
+    <!--});-->
+<!--</script>-->
 </html>
