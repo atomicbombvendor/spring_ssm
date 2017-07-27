@@ -938,3 +938,8 @@ input[type="submit"]:hover{
 	}
 }
 }
+
+/** 消息显示**/
+#msg{
+	color: #ac2925;
+}

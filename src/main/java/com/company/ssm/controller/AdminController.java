@@ -1,11 +1,8 @@
 package com.company.ssm.controller;
 
 import com.alibaba.fastjson.JSON;
-import com.company.ssm.Enums.OperationEnum;
-import com.company.ssm.model.Blog;
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -13,7 +10,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * Created by eli9 on 7/27/2017.
@@ -31,6 +31,25 @@ public class AdminController {
         log.info("admin test");
         String jsonResult = getJSONString(request);
         renderData(response, jsonResult);
+    }
+
+    @RequestMapping(value="login", method=RequestMethod.POST)
+    public void login(HttpServletRequest request, HttpServletResponse response){
+        String name = request.getParameter("userName");
+        String pwd = request.getParameter("password");
+        log.info("user: "+ name+" try to login and pwd is "+ pwd);
+        Map<String, Object> result = new HashMap<>();
+        result.put("uId",99);
+        PrintWriter pw = null;
+        try {
+            pw = response.getWriter();
+            pw.write(JSON.toJSONString(result));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }finally {
+            pw.flush();
+            pw.close();
+        }
     }
 
     private String getJSONString(HttpServletRequest request){

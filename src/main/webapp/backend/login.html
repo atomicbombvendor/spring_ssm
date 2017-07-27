@@ -3,8 +3,10 @@
 <head lang="en">
     <meta charset="UTF-8">
     <title>登录界面</title>
-    <link href="/css/login.css" rel='stylesheet' type='text/css' />
-    <script type="text/javascript" src="/bootstrap/js/jquery-3.2.1.min.js"></script>
+    <link href="../css/login.css" rel='stylesheet' type='text/css' />
+    <script type="text/javascript" src="../bootstrap/js/jquery-3.2.1.min.js"></script>
+    <!-- 导入JS-->
+    <script type="text/javascript" src="../js/back_login.js"></script>
     <script type="application/x-javascript">
         addEventListener("load", function() {
             setTimeout(hideURLbar, 0); }, false);
@@ -18,13 +20,14 @@
     <div class="login-form">
         <h1>Member Login</h1>
         <div class="head">
-            <img src="/img/login-user.png" alt=""/>
+            <img src="../resource/img/login-user.png" alt=""/>
         </div>
         <form>
-            <input type="text" class="text" value="USERNAME" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'USERNAME';}" >
-            <input type="password" value="Password" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Password';}">
+            <span id="msg"></span>
+            <input type="text" id="userName" class="text" value="USERNAME" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'USERNAME';}" >
+            <input type="password" id="password" value="Password" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Password';}">
             <div class="submit">
-                <input type="submit" onclick="myFunction()" value="LOGIN" >
+                <input type="submit" onclick="func_submit()" value="LOGIN" >
             </div>
         </form>
     </div>
@@ -35,6 +38,5 @@
     <!-----//end-copyright---->
 </div>
 <!-----//end-main---->
-
 </body>
 </html>
