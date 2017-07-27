@@ -15,9 +15,9 @@ Date: 2017-06-27 21:46:10
 
 SET FOREIGN_KEY_CHECKS=0;
 
--- ----------------------------
--- Table structure for response2
--- ----------------------------
+--  -- -- -- -- -- -- -- -- -- -- -- -- -- -- 
+--  Table structure for response2
+--  -- -- -- -- -- -- -- -- -- -- -- -- -- -- 
 DROP TABLE IF EXISTS `response2`;
 CREATE TABLE `response2` (
   `post_id2` bigint(20) NOT NULL AUTO_INCREMENT,
@@ -32,6 +32,6 @@ CREATE TABLE `response2` (
   CONSTRAINT `FK_response2_users` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=gbk;
 
--- ----------------------------
--- Records of response2
--- ----------------------------
+--  -- -- -- -- -- -- -- -- -- -- -- -- -- -- 
+--  Records of response2
+--  -- -- -- -- -- -- -- -- -- -- -- -- -- -- 

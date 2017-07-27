@@ -15,9 +15,9 @@ Date: 2017-06-27 21:46:16
 
 SET FOREIGN_KEY_CHECKS=0;
 
--- ----------------------------
--- Table structure for students
--- ----------------------------
+--  -- -- -- -- -- -- -- -- -- -- -- -- -- -- 
+--  Table structure for students
+--  -- -- -- -- -- -- -- -- -- -- -- -- -- -- 
 DROP TABLE IF EXISTS `students`;
 CREATE TABLE `students` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -26,8 +26,8 @@ CREATE TABLE `students` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
--- ----------------------------
--- Records of students
--- ----------------------------
+--  -- -- -- -- -- -- -- -- -- -- -- -- -- -- 
+--  Records of students
+--  -- -- -- -- -- -- -- -- -- -- -- -- -- -- 
 INSERT INTO `students` VALUES ('1', 'xiaoxiao', 'female');
 INSERT INTO `students` VALUES ('2', 'mengmeng', 'female');

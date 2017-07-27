@@ -15,31 +15,31 @@ Date: 2017-06-27 21:45:41
 
 SET FOREIGN_KEY_CHECKS=0;
 
--- ----------------------------
--- Table structure for blog
--- ----------------------------
+--  -- -- -- -- -- -- -- -- -- -- -- -- -- -- 
+--  Table structure for blog
+--  -- -- -- -- -- -- -- -- -- -- -- -- -- -- 
 DROP TABLE IF EXISTS `blog`;
 CREATE TABLE `blog` (
   `tid` bigint(20) NOT NULL AUTO_INCREMENT,
-  `user_id` bigint(20) NOT NULL,--用户Id
-  `title` varchar(500) NOT NULL,--标题
-  `author` varchar(20) DEFAULT NULL,--作者
-  `type` int(11) DEFAULT NULL, --类型 转载，原创
-  `loadURL` varchar(500) DEFAULT NULL, --转载地址
-  `label` varchar(300) DEFAULT NULL,  --标签
-  `decoration` varchar(500) DEFAULT NULL, --描述信息
-  `content` text, --内容
-  `create_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP, --创建时间
-  `alter_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP, --修改时间
-  `state` int(11) DEFAULT NULL, --文章状态
+  `user_id` bigint(20) NOT NULL,-- 用户Id
+  `title` varchar(500) NOT NULL,-- 标题
+  `author` varchar(20) DEFAULT NULL,-- 作者
+  `type` int(11) DEFAULT NULL, -- 类型 转载，原创
+  `loadURL` varchar(500) DEFAULT NULL, -- 转载地址
+  `label` varchar(300) DEFAULT NULL,  -- 标签
+  `decoration` varchar(500) DEFAULT NULL, -- 描述信息
+  `content` text, -- 内容
+  `create_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP, -- 创建时间
+  `alter_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP, -- 修改时间
+  `state` int(11) DEFAULT NULL, -- 文章状态
   PRIMARY KEY (`tid`),
   KEY `user_id` (`user_id`),
   CONSTRAINT `blog_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=gbk;
 
--- ----------------------------
--- Records of blog
--- ----------------------------
+--  -- -- -- -- -- -- -- -- -- -- -- -- -- -- 
+--  Records of blog
+--  -- -- -- -- -- -- -- -- -- -- -- -- -- -- 
 INSERT INTO BLOG(user_id,title,author,type,label,decoration,content,state)
 VALUES(1,'标题一','liyan',1001,'测试,Java','这是一篇测试','<h2 id="section-1">第一部分</h2>
     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam eu sem tempor, varius quam at, luctus dui. Mauris magna metus, dapibus nec turpis vel, semper malesuada ante. Vestibulum id metus ac nisl bibendum scelerisque non non purus. Suspendisse varius nibh non aliquet sagittis. In tincidunt orci sit amet elementum vestibulum. Vivamus fermentum in arcu in aliquam. Quisque aliquam porta odio in fringilla. Vivamus nisl leo, blandit at bibendum eu, tristique eget risus. Integer aliquet quam ut elit suscipit, id interdum neque porttitor. Integer faucibus ligula.</p>

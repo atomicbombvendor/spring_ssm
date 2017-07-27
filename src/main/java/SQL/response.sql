@@ -15,9 +15,9 @@ Date: 2017-06-27 21:45:52
 
 SET FOREIGN_KEY_CHECKS=0;
 
--- ----------------------------
--- Table structure for response
--- ----------------------------
+--  -- -- -- -- -- -- -- -- -- -- -- -- -- -- 
+--  Table structure for response
+--  -- -- -- -- -- -- -- -- -- -- -- -- -- -- 
 DROP TABLE IF EXISTS `response`;
 CREATE TABLE `response` (
   `post_id` bigint(20) NOT NULL AUTO_INCREMENT,
@@ -31,6 +31,6 @@ CREATE TABLE `response` (
   CONSTRAINT `response_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=gbk;
 
--- ----------------------------
--- Records of response
--- ----------------------------
+--  -- -- -- -- -- -- -- -- -- -- -- -- -- -- 
+--  Records of response
+--  -- -- -- -- -- -- -- -- -- -- -- -- -- -- 

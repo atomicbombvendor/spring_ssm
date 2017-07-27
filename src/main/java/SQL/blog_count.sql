@@ -15,9 +15,9 @@ Date: 2017-06-27 21:45:46
 
 SET FOREIGN_KEY_CHECKS=0;
 
--- ----------------------------
--- Table structure for blog_count
--- ----------------------------
+--  -- -- -- -- -- -- -- -- -- -- -- -- -- -- 
+--  Table structure for blog_count
+--  -- -- -- -- -- -- -- -- -- -- -- -- -- -- 
 DROP TABLE IF EXISTS `blog_count`;
 CREATE TABLE `blog_count` (
   `tid` bigint(20) NOT NULL,
@@ -27,6 +27,6 @@ CREATE TABLE `blog_count` (
   CONSTRAINT `blog_count_ibfk_1` FOREIGN KEY (`tid`) REFERENCES `blog` (`tid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
--- ----------------------------
--- Records of blog_count
--- ----------------------------
+--  -- -- -- -- -- -- -- -- -- -- -- -- -- -- 
+--  Records of blog_count
+--  -- -- -- -- -- -- -- -- -- -- -- -- -- -- 

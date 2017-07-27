@@ -15,9 +15,9 @@ Date: 2017-06-27 21:46:26
 
 SET FOREIGN_KEY_CHECKS=0;
 
--- ----------------------------
--- Table structure for users
--- ----------------------------
+--  -- -- -- -- -- -- -- -- -- -- -- -- -- -- 
+--  Table structure for users
+--  -- -- -- -- -- -- -- -- -- -- -- -- -- -- 
 DROP TABLE IF EXISTS `users`;
 CREATE TABLE `users` (
   `user_id` bigint(20) NOT NULL AUTO_INCREMENT,
@@ -28,9 +28,9 @@ CREATE TABLE `users` (
   UNIQUE KEY `user_name` (`user_name`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=gbk;
 
--- ----------------------------
--- Records of users
--- ----------------------------
+--  -- -- -- -- -- -- -- -- -- -- -- -- -- -- 
+--  Records of users
+--  -- -- -- -- -- -- -- -- -- -- -- -- -- -- 
 INSERT INTO `users` VALUES ('1', 'liyan', '123456', '2017-06-27 21:36:11');
 INSERT INTO `users` VALUES ('2', 'liyan2', '123456', '2017-06-27 21:38:59');
 INSERT INTO `users` VALUES ('3', 'xiaoming', '123456', '2017-06-27 21:38:59');
