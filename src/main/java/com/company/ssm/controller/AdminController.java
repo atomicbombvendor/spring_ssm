@@ -5,6 +5,8 @@ import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.SessionAttributes;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -20,6 +22,7 @@ import java.util.Map;
  */
 @Controller
 @RequestMapping("/admin")
+@SessionAttributes("userId")
 public class AdminController {
     Logger log = Logger.getLogger(BlogController.class);
 
@@ -33,6 +36,7 @@ public class AdminController {
         renderData(response, jsonResult);
     }
 
+    @ResponseBody
     @RequestMapping(value="login", method=RequestMethod.POST)
     public void login(HttpServletRequest request, HttpServletResponse response){
         String name = request.getParameter("userName");
@@ -42,14 +46,25 @@ public class AdminController {
         result.put("uId",99);
         PrintWriter pw = null;
         try {
-            pw = response.getWriter();
-            pw.write(JSON.toJSONString(result));
+            if(name.equals("liyan")){
+            }else {
+                pw = response.getWriter();
+                pw.write(JSON.toJSONString(result));
+            }
         } catch (IOException e) {
             e.printStackTrace();
         }finally {
             pw.flush();
             pw.close();
         }
+    }
+
+    @ResponseBody
+    @RequestMapping(value="show")
+    public String show(HttpServletRequest request, HttpServletResponse response) {
+        String jsonResult = getJSONString(request);
+        renderData(response, jsonResult);
+        return "../backend/editor";
     }
 
     private String getJSONString(HttpServletRequest request){

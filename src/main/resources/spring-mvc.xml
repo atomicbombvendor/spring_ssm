@@ -31,17 +31,23 @@
         </property>
     </bean>
 
+    <!-- 用来访问html 不知道可不可行-->
+    <bean id="freemarkerViewResolver"
+          class="org.springframework.web.servlet.view.freemarker.FreeMarkerViewResolver">
+        <property name="viewClass"
+                  value="org.springframework.web.servlet.view.freemarker.FreeMarkerView" />
+        <property name="prefix" value="/"/>
+        <property name="suffix" value=".html"/>
+    </bean>
+
+    <!--<bean id="viewResolver"-->
+          <!--class="org.springframework.web.servlet.view.freemarker.FreeMarkerViewResolver"-->
+          <!--p:prefix="/WEB-INF/html/" p:suffix=".html" />-->
+
     <!-- 定义跳转的文件的前后缀 ，视图模式配置 -->
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
         <property name="prefix" value="/WEB-INF/" />
         <property name="suffix" value=".jsp"/>
-    </bean>
-
-    <!-- 用来访问html 不知道可不可行-->
-    <bean id="jspViewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-        <property name="viewClass" value="org.springframework.web.servlet.view.JstlView"/>
-        <property name="prefix" value="/WEB-INF/html/"/>
-        <property name="suffix" value=".html"/>
     </bean>
 
     <!-- 文件上传配置 -->
