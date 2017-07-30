@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
@@ -38,12 +39,14 @@ public class AdminController {
 
     @ResponseBody
     @RequestMapping(value="login", method=RequestMethod.POST)
-    public void login(HttpServletRequest request, HttpServletResponse response){
-        String name = request.getParameter("userName");
-        String pwd = request.getParameter("password");
+    public void login(HttpServletRequest request, HttpServletResponse response, String userName, String password){
+        request.getSession().setAttribute("uId",99);
+        String name = userName;
+        String pwd = password;
         log.info("user: "+ name+" try to login and pwd is "+ pwd);
         Map<String, Object> result = new HashMap<>();
         result.put("uId",99);
+        HttpSession session = request.getSession();
         PrintWriter pw = null;
         try {
             if(name.equals("liyan")){
@@ -60,11 +63,11 @@ public class AdminController {
     }
 
     @ResponseBody
-    @RequestMapping(value="show")
-    public String show(HttpServletRequest request, HttpServletResponse response) {
+    @RequestMapping(value="show", method=RequestMethod.POST)
+    public void show(HttpServletRequest request, HttpServletResponse response, String uId) {
+        System.out.println("uId is "+uId);
         String jsonResult = getJSONString(request);
         renderData(response, jsonResult);
-        return "../backend/editor";
     }
 
     private String getJSONString(HttpServletRequest request){

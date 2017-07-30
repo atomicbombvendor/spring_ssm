@@ -14,8 +14,8 @@ function func_submit(){
                 //alert(typeof data);
                 //如果为object，可以尝试直接使用data.key获取属性；
                 //如果为string，那么必须进行解析为json object，才可以使用！
-                // window.location.href = "editor.html?uId="+data.uId;
-                location.href="../admin/show"
+                //window.location.href = "editor.html?uId="+data.uId;
+                location.href="show.html?uId="+data.uId;
             }else{
                 $("#msg").text("登录异常");
             }
