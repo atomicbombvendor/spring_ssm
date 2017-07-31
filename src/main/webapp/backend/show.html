@@ -3,18 +3,83 @@
 <head>
     <meta charset="UTF-8">
     <title>Editor</title>
-    <!-- 第一条引入非必须,第二条是必须引入的-->
     <!-- /是根目录 -->
+    <link rel="stylesheet" href="../bootstrap/css/bootstrap.min.css">
+    <!-- jQuery (Bootstrap 的 JavaScript 插件需要引入 jQuery) -->
     <script type="text/javascript" src="../bootstrap/js/jquery-3.2.1.min.js"></script>
-    <script type="text/javascript" src="../editor/ckeditor/ckeditor.js"></script>
+    <script src="../bootstrap/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="../js/back_show.js"></script>
+    <link rel="stylesheet" href="../css/index.css">
 </head>
 <body>
-<td>
-    <!--<textarea id="opinion" name="opinion" rows="10" cols="38"></textarea>-->
-    <!--<script type="text/javascript">CKEDITOR.replace("opinion")</script>-->
-    <div>show page</div>
-    <div><span id="valueShow"></span></div>
-</td>
+<!-- 导航栏开始-->
+<header id="top">
+    <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse"
+                        data-target="#example-navbar-collapse">
+                    <span class="sr-only">切换导航</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#">Bomb</a>
+            </div>
+            <div class="collapse navbar-collapse" id="example-navbar-collapse">
+                <ul class="nav navbar-nav">
+                    <li class="active"><a href="#">iOS</a></li>
+                    <li><a href="#">SVN</a></li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            Java <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">jmeter</a></li>
+                            <li><a href="#">EJB</a></li>
+                            <li><a href="#">Jasper Report</a></li>
+                            <li class="divider"></li>
+                            <li><a href="#">分离的链接</a></li>
+                            <li class="divider"></li>
+                            <li><a href="#">另一个分离的链接</a></li>
+                        </ul>
+                    </li>
+                </ul>
+                <form class="navbar-form navbar-right" role="search">
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Search">
+                    </div>
+                    <button type="submit" class="btn btn-default btn-sm">提交按钮</button>
+                </form>
+            </div>
+            <div>
+            </div>
+        </div>
+    </nav>
+</header>
+<!-- 导航栏结束-->
+<div class="row">
+    <div class="col-md-8 col-md-offset-2">
+        <hr/>
+        <table id="blogTable">
+            <!-- 这里显示博客内容-->
+        </table>
+    </div>
+    <div class="col-md-6 col-md-offset-3">
+        <ul class="pager">
+            <li class="previous"><a id="previousLink" onclick="prePage()">&larr;
+                Older</a></li>
+            <!-- 总博客数量-->
+            <li>共有 <span id="spanTotalInfo">0</span> 条博客</li>
+            <li>当前第 <span id="spanPageNum" value="1">1</span> 页</li>
+            <!-- current page -->
+            <li>共 <span id="spanTotalPage">0</span>页</li>
+            <li class="next"><a id="nextLink" onclick="nextPage()">Newer &rarr;</a></li>
+        </ul>
+    </div>
+</div>
+<span style="font-size:16px"><p id="back-to-top"><a href="#top"><span>返回顶部</span></a></p></span>
+<script src="../js/page.js"></script>
 </body>
+
 </html>

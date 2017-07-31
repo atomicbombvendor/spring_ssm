@@ -1,6 +1,10 @@
 package com.company.ssm.controller;
 
 import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONArray;
+import com.company.ssm.Enums.OperationEnum;
+import com.company.ssm.model.Blog;
+import com.company.ssm.service.BlogService;
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -8,9 +12,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
+import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
@@ -26,6 +30,9 @@ import java.util.Map;
 @SessionAttributes("userId")
 public class AdminController {
     Logger log = Logger.getLogger(BlogController.class);
+
+    @Resource
+    private BlogService blogService;
 
     /**
      * ajax请求不需要返回页面，只需要得到response中的数据即可，所以方法签名为void即可
@@ -46,8 +53,8 @@ public class AdminController {
         log.info("user: "+ name+" try to login and pwd is "+ pwd);
         Map<String, Object> result = new HashMap<>();
         result.put("uId",99);
-        HttpSession session = request.getSession();
         PrintWriter pw = null;
+        //TODO 登录验证
         try {
             if(name.equals("liyan")){
             }else {
@@ -65,9 +72,18 @@ public class AdminController {
     @ResponseBody
     @RequestMapping(value="show", method=RequestMethod.POST)
     public void show(HttpServletRequest request, HttpServletResponse response, String uId) {
-        System.out.println("uId is "+uId);
-        String jsonResult = getJSONString(request);
-        renderData(response, jsonResult);
+        log.info("current uId is "+uId);
+        log.info(OperationEnum.SHOW_ALL_BLOG.getMessage());
+        List blogList = blogService.getAllBlog();
+        //使用fastJson生成JSONArray
+        JSONArray json = new JSONArray(blogList);
+        try{
+            response.setCharacterEncoding("UTF-8");
+            String result = json.toString();
+            response.getWriter().write(result);
+        }catch (IOException e){
+            log.error("json IO Exception",e);
+        }
     }
 
     private String getJSONString(HttpServletRequest request){

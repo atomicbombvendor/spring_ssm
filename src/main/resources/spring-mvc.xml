@@ -31,18 +31,18 @@
         </property>
     </bean>
 
-    <!-- 用来访问html 不知道可不可行-->
-    <bean id="freemarkerViewResolver"
-          class="org.springframework.web.servlet.view.freemarker.FreeMarkerViewResolver">
-        <property name="viewClass"
-                  value="org.springframework.web.servlet.view.freemarker.FreeMarkerView" />
-        <property name="prefix" value="/"/>
-        <property name="suffix" value=".html"/>
-    </bean>
+    <!--&lt;!&ndash; 用来访问html 不知道可不可行&ndash;&gt;-->
+    <!--<bean id="freemarkerViewResolver"-->
+          <!--class="org.springframework.web.servlet.view.freemarker.FreeMarkerViewResolver">-->
+        <!--<property name="viewClass"-->
+                  <!--value="org.springframework.web.servlet.view.freemarker.FreeMarkerView" />-->
+        <!--<property name="prefix" value="/"/>-->
+        <!--<property name="suffix" value=".html"/>-->
+    <!--</bean>-->
 
-    <!--<bean id="viewResolver"-->
-          <!--class="org.springframework.web.servlet.view.freemarker.FreeMarkerViewResolver"-->
-          <!--p:prefix="/WEB-INF/html/" p:suffix=".html" />-->
+    <!--&lt;!&ndash;<bean id="viewResolver"&ndash;&gt;-->
+          <!--&lt;!&ndash;class="org.springframework.web.servlet.view.freemarker.FreeMarkerViewResolver"&ndash;&gt;-->
+          <!--&lt;!&ndash;p:prefix="/WEB-INF/html/" p:suffix=".html" />&ndash;&gt;-->
 
     <!-- 定义跳转的文件的前后缀 ，视图模式配置 -->
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">

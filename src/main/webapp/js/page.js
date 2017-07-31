@@ -128,4 +128,6 @@ function hide() {
     preNoLink();
 }
 //加载隐藏function
-hide();
+$(document).ready(function(){
+    hide();
+});
