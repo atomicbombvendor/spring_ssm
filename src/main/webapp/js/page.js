@@ -127,7 +127,7 @@ function hide() {
     }
     preNoLink();
 }
-//加载隐藏function
-$(document).ready(function(){
-    hide();
-});
+// //加载隐藏function
+// $(document).ready(function(){
+//     hide();
+// });

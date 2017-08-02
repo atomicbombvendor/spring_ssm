@@ -34,10 +34,10 @@ public class BlogController {
     public String showBlog(Model model){
         log.info(OperationEnum.SHOW_ALL_BLOG.getMessage());
         List<Blog> blogList = blogService.getAllBlog();
-        Iterator it = blogList.iterator();
-        while(it.hasNext()){
-            Blog b = (Blog)it.next();
-        }
+//        Iterator it = blogList.iterator();
+//        while(it.hasNext()){
+//            Blog b = (Blog)it.next();
+//        }
         int value = blogList.size()%pageSize;
         int pageNum = value==0?value:value+1;//count of pages
         log.info("BlogList size is "+blogList.size());

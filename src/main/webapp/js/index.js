@@ -29,9 +29,7 @@ $(function(){
     });
 });
 
-// JS function
-function nextClick2(currentPage, list) {
-    alert(currentPage);
-    alert(list.size);
-}
+$(document).ready(function(){
+    hide();
+});
 
