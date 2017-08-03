@@ -4,10 +4,6 @@
 
 $(document).ready(function(){
     func_init();
-    $.getScript("../js/page.js");//加载JS文件
-    $.getScript("../js/page.js",function () {//加载Js成功后，执行回调函数
-        hide();
-    });
     pageRoll();
 });
 
@@ -18,7 +14,7 @@ function func_init(){
         data : {
             "uId": getQueryString("uId")
         },
-        async: false,
+        async: false, //要求同步的操作
         success: function (data) {//处理返回的数据
             if(data != null){
                 //接收后台的数据

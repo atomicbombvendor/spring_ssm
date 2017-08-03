@@ -17,6 +17,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -83,6 +84,26 @@ public class AdminController {
             response.getWriter().write(result);
         }catch (IOException e){
             log.error("json IO Exception",e);
+        }
+    }
+
+    @ResponseBody
+    @RequestMapping(value="label", method=RequestMethod.POST)
+    public void showLabel(HttpServletRequest request, HttpServletResponse response, String label){
+        try{
+            byte[] b = label.getBytes("ISO-8859-1");
+            String value = new String(b, "UTF-8");
+            log.info("back end search label: "+value);
+            List resultList= blogService.getLabelBlog(value);
+            //使用fastJson生成JSONArray
+            JSONArray json = new JSONArray(resultList);
+            response.setCharacterEncoding("UTF-8");
+            String result = json.toString();
+            response.getWriter().write(result);
+        }catch (UnsupportedEncodingException e) {
+            log.error("不支持的字符类型："+label,e);
+        } catch (IOException e) {
+            log.error("写入Json错误",e);
         }
     }
 
