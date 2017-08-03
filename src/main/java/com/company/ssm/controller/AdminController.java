@@ -91,11 +91,12 @@ public class AdminController {
     @RequestMapping(value="label", method=RequestMethod.POST)
     public void showLabel(HttpServletRequest request, HttpServletResponse response, String label){
         try{
-            byte[] b = label.getBytes("ISO-8859-1");
-            String value = new String(b, "UTF-8");
-            log.info("back end search label: "+value);
-            List resultList= blogService.getLabelBlog(value);
+            byte[] b = label.getBytes("UTF-8");
+            String transCodingValue = new String(b, "UTF-8");
+            log.info("back end search label: "+transCodingValue);
+            List resultList= blogService.getLabelBlog(label);
             //使用fastJson生成JSONArray
+            System.out.println(resultList.get(0));
             JSONArray json = new JSONArray(resultList);
             response.setCharacterEncoding("UTF-8");
             String result = json.toString();
