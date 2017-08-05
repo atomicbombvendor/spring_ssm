@@ -9,8 +9,9 @@ CKEDITOR.editorConfig = function( config ) {
 	config.disableNativeSpellChecker=false; //本地拼写检查
     config.toolbarCanCollapse = true;//是否可收缩
     config.resize_enabled = true;
-    config.resize_minHeight = 750;
-    config.resize_minWidth = 750;
+    // 设置宽高
+    // config.resize_minHeight = 750;
+    // config.resize_minWidth = 750;
     config.editingBlock = true;
     config.find_highlight = {
         element : 'span',

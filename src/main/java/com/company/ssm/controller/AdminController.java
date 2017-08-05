@@ -2,9 +2,10 @@ package com.company.ssm.controller;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
 import com.company.ssm.Enums.OperationEnum;
-import com.company.ssm.model.Blog;
 import com.company.ssm.service.BlogService;
+import com.company.ssm.utils.PinYinUtil;
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -45,6 +46,13 @@ public class AdminController {
         renderData(response, jsonResult);
     }
 
+    /**
+     * user login
+     * @param request
+     * @param response
+     * @param userName
+     * @param password
+     */
     @ResponseBody
     @RequestMapping(value="login", method=RequestMethod.POST)
     public void login(HttpServletRequest request, HttpServletResponse response, String userName, String password){
@@ -70,6 +78,12 @@ public class AdminController {
         }
     }
 
+    /**
+     * show all blog
+     * @param request
+     * @param response
+     * @param uId
+     */
     @ResponseBody
     @RequestMapping(value="show", method=RequestMethod.POST)
     public void show(HttpServletRequest request, HttpServletResponse response, String uId) {
@@ -87,16 +101,21 @@ public class AdminController {
         }
     }
 
+    /**
+     * Show all blog by label name
+     * @param request
+     * @param response
+     * @param label
+     */
     @ResponseBody
     @RequestMapping(value="label", method=RequestMethod.POST)
     public void showLabel(HttpServletRequest request, HttpServletResponse response, String label){
         try{
             byte[] b = label.getBytes("UTF-8");
             String transCodingValue = new String(b, "UTF-8");
-            log.info("back end search label: "+transCodingValue);
+            log.info("back end search label: "+ PinYinUtil.getPinYin(transCodingValue));
             List resultList= blogService.getLabelBlog(label);
             //使用fastJson生成JSONArray
-            System.out.println(resultList.get(0));
             JSONArray json = new JSONArray(resultList);
             response.setCharacterEncoding("UTF-8");
             String result = json.toString();
@@ -108,6 +127,29 @@ public class AdminController {
         }
     }
 
+    /**
+     * Get blog by blog id
+     * @param request request
+     * @param response response
+     * @param tid blog id
+     */
+    @ResponseBody
+    @RequestMapping(value="blog", method =RequestMethod.POST)
+    public void getBlog(HttpServletRequest request, HttpServletResponse response, int tid){
+        try {
+            Map<String, Object> blog = blogService.getBlogDetailByTid(tid);
+            JSONObject json = new JSONObject(blog);
+            response.setCharacterEncoding("UTF-8");
+            String result = json.toString();
+            response.getWriter().write(result);
+        } catch (IOException e) {
+            log.error("json error when trans map to json", e);
+        }
+    }
+
+    /**
+     * mock some json result
+     */
     private String getJSONString(HttpServletRequest request){
         //故意构造一个数组，使返回的数据为json数组，数据更复杂些
         List<Map<String, Object>> datas = new ArrayList<>();

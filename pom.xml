@@ -316,6 +316,14 @@
       <version>2.4</version>
     </dependency>
 
+    <!--拼音包-->
+    <!-- https://mvnrepository.com/artifact/com.belerweb/pinyin4j -->
+    <dependency>
+      <groupId>com.belerweb</groupId>
+      <artifactId>pinyin4j</artifactId>
+      <version>2.5.0</version>
+    </dependency>
+
     <!--&lt;!&ndash;bootstrap依赖&ndash;&gt;-->
     <!--<dependency>-->
       <!--<groupId>org.webjars</groupId>-->

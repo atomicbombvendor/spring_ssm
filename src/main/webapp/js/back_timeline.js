@@ -25,7 +25,7 @@ function func_init(){
                     value += '<div class="cd-timeline-content">';
                     value += '<h2>' + o.title +'</h2>';
                     value += '<p>' + o.content.substring(0, o.content.indexOf("</p>")+4) + '</p>';
-                    value += '<a href="showBlogDetail?tid=' + o.tid + '">阅读全文>></a>';
+                    value += '<a href="../backend/editor.html?tid=' + o.tid + '" target="_blank">阅读全文>></a>';
                     var milli = parseInt(o.updateTime.toString().replace("/\Digm",""));
                     var updateDate = new Date(milli);
                     value += '<span class="cd-date">' + formatDate(updateDate) + '</span>';
