@@ -9,11 +9,11 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
 import java.util.List;
+import java.util.Map;
 
 /**
- * Created by Zhangxq on 2016/7/15.
+ * Table For Test
  */
-
 @Service
 @Transactional(rollbackFor = Exception.class)
 public class UserService {
@@ -70,4 +70,5 @@ public class UserService {
             return userDao.addNewUser(user_name, user_email, md5psd);
         }
     }
+
 }

@@ -16,7 +16,7 @@ Date: 2017-06-27 21:46:26
 SET FOREIGN_KEY_CHECKS=0;
 
 --  -- -- -- -- -- -- -- -- -- -- -- -- -- -- 
---  Table structure for users
+--  Table structure for users blog table
 --  -- -- -- -- -- -- -- -- -- -- -- -- -- -- 
 DROP TABLE IF EXISTS `users`;
 CREATE TABLE `users` (

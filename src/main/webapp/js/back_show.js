@@ -22,10 +22,10 @@ function func_init(){
                 var trStr='';
                 for(var i=0; i<obj.length; i++){
                     trStr += '<tr><td>';
-                    trStr += '<h2 class="blogTitle"><a href="showBlogDetail?tid='+obj[i].tid+'">';
+                    trStr += '<h2 class="blogTitle"><a href="../backend/editor.html?tid='+obj[i].tid+'">';
                     trStr += obj[i].title+'</a></h2>';
                     trStr += '<span>'+obj[i].content.substring(0, +obj[i].content.indexOf("</p>")+4)+'</span>';
-                    trStr += '<div><a href="../backend/editor.html?tid='+obj[i].tid+'" target="_blank"></a>阅读全文>></div>';
+                    trStr += '<div><a href="../backend/editor.html?tid='+obj[i].tid+'" target="_blank">阅读全文>></a></div>';
                     trStr += '<hr/></td>';
                 }
                 var len = obj.length;//记录总数

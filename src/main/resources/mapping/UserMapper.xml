@@ -45,4 +45,5 @@ parameterType 主要指定参数类型，可以是int, short, long, string等类
         VALUES (#{userName}, #{userEmail}, #{user_pwd},CURRENT_TIMESTAMP ,CURRENT_TIMESTAMP ,0);
     </insert>
 
+
 </mapper>

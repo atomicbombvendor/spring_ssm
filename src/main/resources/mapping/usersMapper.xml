@@ -13,4 +13,13 @@
     <select id="getAllUsers" resultMap="UsersBaseDaoTst">
         SELECT * FROM USERS
     </select>
+
+    <select id="getUser" resultType="map"> <!-- ResultType -> map || ResultMap -> class -->
+        SELECT user_id, user_name, user_psd, regtime FROM USERS WHERE user_name = #{userName} AND user_psd = #{userPsd};
+    </select>
+
+    <select id="getUserById" resultMap="UsersBaseDaoTst">
+        SELECT * FROM USERS WHERE user_id = #{uId};
+    </select>
+
 </mapper>

@@ -38,4 +38,13 @@
         Select * FROM blog Where blog.label Like CONCAT('%','${label}','%') Order by alter_time desc
     </select>
 
+    <insert id="addBlog" keyProperty="tid" parameterType="com.company.ssm.model.Blog">
+        INSERT INTO BLOG(user_id,title,author,type,label,decoration,content,state,create_time,alter_time)
+        VALUES(#{user_id},#{title},#{author},#{type},#{label},#{decoration},#{content},1001,#{createTime},#{alter_time});
+    </insert>
+
+    <update id="updateBlog" parameterType="com.company.ssm.model.Blog">
+        UPDATE blog SET title=#{title}, label=#{label}, content=#{content}, decoration=#{decoration},
+        alter_time=#{alertTime} Where tid=#{tid};
+    </update>
 </mapper>

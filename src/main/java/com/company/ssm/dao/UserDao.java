@@ -31,4 +31,5 @@ public interface UserDao {
 
     int addNewUser(@Param("user_name") String user_name, @Param("user_email") String user_email,
                    @Param("user_pwd") String user_pwd);
+//    User getUser()
 }

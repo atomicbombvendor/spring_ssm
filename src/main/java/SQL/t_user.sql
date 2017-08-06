@@ -16,7 +16,7 @@ Date: 2017-06-27 21:46:22
 SET FOREIGN_KEY_CHECKS=0;
 
 --  -- -- -- -- -- -- -- -- -- -- -- -- -- -- 
---  Table structure for t_user
+--  Table structure for t_user Just a test table.
 --  -- -- -- -- -- -- -- -- -- -- -- -- -- -- 
 DROP TABLE IF EXISTS `t_user`;
 CREATE TABLE `t_user` (
