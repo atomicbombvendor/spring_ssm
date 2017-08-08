@@ -4,8 +4,7 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.company.ssm.Enums.OperationEnum;
-import com.company.ssm.model.Blog;
-import com.company.ssm.model.Users;
+
 import com.company.ssm.service.BlogService;
 import com.company.ssm.service.UsersService;
 import com.company.ssm.utils.PinYinUtil;
@@ -18,13 +17,13 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import javax.annotation.Resource;
-import javax.json.Json;
+import javax.jms.Session;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.*;
 
@@ -180,8 +179,10 @@ public class AdminController {
                          String desc,
                          String content,
                          String label){//标签 要求用空格隔开
-        int uid = (Integer)request.getSession().getAttribute("uId");
-        String userName = (String)request.getSession().getAttribute("userName");
+        HttpSession session = request.getSession();
+        int uid = (Integer)session.getAttribute("uId");
+
+        String userName = (String)session.getAttribute("userName");
         String labelS = label.replace(" ", ",");
 
         LocalDateTime createTime = LocalDateTime.now();
