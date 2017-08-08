@@ -3,16 +3,113 @@ $(document).ready(function(){
     $("#closeBth").click(func_close);
 });
 
+$("#createBtn").bind("click",function(){
+   func_submit();
+});
+
+//check if tid is null, choose different function to init page
 function func_init(){
    var tid = getQueryString("tid");
-   if(tid != null){//表示前台有参数传入，需要做修改
-       func_update(tid);
-
-    }else{//新建页面
+   if(tid != null){ // update content
+       document.title = "修改";
+       $("#createBtn").text("提交修改");
+       $("#createBtn").attr("disabled", "disabled");
+       func_show(tid);
+    }else{//create new
        document.title = "新建";
        $("#enableBth").css("display","none");
        func_create();
    };
+}
+
+function func_submit(){
+    var tid = getQueryString("tid");
+    if(tid != null){//submit update
+        submit_update(tid);
+    }else{//submit new
+        submit_create();
+    }
+}
+
+function submit_update(tid){ // submit when update blog
+    var title =  $("#input-38").attr("value");
+    // var title2 =  $("#input-38").val();//they can get value
+    var desc = $("#input-39").attr("value");
+    var label = $("#input-40").attr("value");
+    var content = editor.document.getBody().getHtml();
+    $.ajax({
+        type: "POST", url: "../admin/save", dataType:"JSON",
+        data:{
+            "tid": tid,
+            "title": title.toString(),
+            "desc": desc.toString(),
+            "label": label.toString(),
+            "content":content.toString()
+        },
+        success: function(data){
+            //TODO process when success
+            alert("success");
+        },
+        error: function (data) {
+            //TODO process when failed
+            alert("failed");
+        }
+    });
+}
+
+function submit_create(){ //submit when create new blog
+    var title =  $("#input-38").val();
+    alert(title);
+    var desc = $("#input-39").attr("value");
+    var label = $("#input-40").attr("value");
+    var content = editor.document.getBody().getHtml();
+    $.ajax({
+        type: "POST", url: "../admin/saveBlog", dataType:"JSON",
+        data:{
+           "title": title,
+           "desc": desc,
+           "label": label,
+           "content":content
+        },
+        async:false,
+        success: function(data){
+            //TODO process when success
+            alert("success");
+        },
+        error: function (data) {
+            //TODO process when failed
+            alert("failed");
+        }
+    });
+}
+
+//show blog
+function func_show(tid) {
+    $.ajax({
+        type: "POST", url: "../admin/showBlog", dataType: "JSON",
+        data: {
+            "tid": tid
+        },
+        success: function (data) {
+            if (data == null) {
+                alert("数据返回异常");
+            } else {
+                var obj = data;//解析json字符串为json对象形式
+                var title = obj.title;
+                var desc = obj.decoration;
+                var content = obj.content;
+                var label = obj.label.replace(","," ");
+
+                $("#input-38").attr("value",title);
+                $("#input-39").attr("value",desc);
+                $("#input-40").attr("value",label);
+                editor.setData(content);
+            }
+        },
+        error: function () {
+            alert("返回异常");
+        }
+    });
 }
 
 function getQueryString(name) {
@@ -24,6 +121,7 @@ function getQueryString(name) {
 function func_close(){
     open(location, '_self').close();
 }
+
 function func_enable(){
     $("#createBtn").removeAttr("disabled");
 }
@@ -31,37 +129,4 @@ function func_enable(){
 //create blog
 function func_create(){
 
-}
-
-//update blog
-function func_update(tid) {
-    $.ajax({
-        type: "POST", url: "../admin/blog", dataType: "JSON",
-        data: {
-            "tid": tid
-        },
-        async: false, //要求同步的操作
-        success: function (data) {//处理返回的数据
-            if (data != null) {
-                //接收后台的数据
-                var obj = data;//解析json字符串为json对象形式
-                var trStr = '';
-                trStr += '<tr><td>';
-                trStr += '<h2 class="blogTitle"><a href="showBlogDetail?tid=' + obj.tid + '">';
-                trStr += obj.title + '</a></h2>';
-                trStr += '<span>' + obj.content.substring(0, +obj.content.indexOf("</p>") + 4) + '</span>';
-                trStr += '<div><a href="showBlogDetail?tid=' + obj.tid + '"</a>阅读全文>></div>';
-                trStr += '<hr/></td>';
-                $('#blogTable').html(trStr);//运用HTML的方法将拼接的table添加到dom
-                document.title = "修改";
-                $("#createBtn").text("提交修改");
-                $("#createBtn").attr("disabled", "disabled");
-            } else {
-                $("#valueShow").text("数据返回异常");
-            }
-        },
-        error: function () {
-            $("#valueShow").text("返回异常");
-        }
-    });
 }

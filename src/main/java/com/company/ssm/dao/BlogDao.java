@@ -18,9 +18,11 @@ public interface BlogDao {
 
     List<Blog> selectAllBlog();
 
-    List<Blog> selectBlogByTid(@Param("tid") int tid);
+    Blog selectBlogByTid(@Param("tid") int tid); //blog Id
 
-    Map<String, Object> getBlogDetail(@Param("tid") int tid);
+    Map<String, Object> getBlogDetail(@Param("tid") int tid);//blog Id
+
+    List<Blog> getBlogByUserId(@Param("uid") Long uId);// user id
 
     List<Blog> getLabelBlog(@Param("label") String label);
 

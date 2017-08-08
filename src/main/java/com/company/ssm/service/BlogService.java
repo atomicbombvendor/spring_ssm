@@ -33,11 +33,24 @@ public class BlogService {
     }
 
     /**
+     * Get Blog by user Id
+     * @param uId
+     * @return
+     */
+    public List<Blog> getBlogByUserId(Long uId){
+        List<Blog> result = blogDao.getBlogByUserId(uId);
+        if (result == null) {
+            log.error("blog list is empty");
+        }
+        return result;
+    }
+
+    /**
      * 返回的值是key-value的形式，具体格式
      * title->标题一
      * user_name->****
      *
-     * @param tid
+     * @param tid blog id
      * @return
      */
     public Map<String, Object> getBlogDetailByTid(int tid) {

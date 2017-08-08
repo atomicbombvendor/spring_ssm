@@ -21,6 +21,10 @@
         SELECT * FROM DB_SSM.BLOG
     </select>
 
+    <select id="getBlogByUserId" resultMap="BlogBaseMap">
+        SELECT * FROM DB_SSM.BLOG WHERE user_id=${uid}
+    </select>
+
     <select id="getAllBlog" resultMap="BlogBaseMap">
         SELECT * FROM DB_SSM.BLOG
     </select>

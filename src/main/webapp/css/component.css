@@ -17,7 +17,7 @@
 	border: none;
 	border-radius: 0;
 	background: #f0f0f0;
-	color: #aaa;
+	color: #0f0f0f;
 	font-weight: bold;
 	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 	-webkit-appearance: none; /* for box shadows to show on iOS */
@@ -1021,7 +1021,7 @@
 	padding: 0.75em 0.1em 0.25em;
 	width: 100%;
 	background: transparent;
-	color: #afb3b8;
+	color: #1a1a1a;
 	font-size: 150%;
 }
 

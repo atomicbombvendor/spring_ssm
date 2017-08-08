@@ -4,6 +4,7 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.company.ssm.Enums.OperationEnum;
+import com.company.ssm.model.Blog;
 import com.company.ssm.model.Users;
 import com.company.ssm.service.BlogService;
 import com.company.ssm.service.UsersService;
@@ -72,22 +73,23 @@ public class AdminController {
         Map<String, Object> result = new HashMap<>();
         result.put("uId", uId);
 
+        //JSON 把单个Map写入JSON
         renderData(response, JSON.toJSONString(result));
     }
 
     /**
-     * show all blog
-     * @param request
-     * @param response
-     * @param uId
+     * show all blog from uid; show blog by user
+     * @param request HttpServletRequest
+     * @param response HttpServletResponse
+     * @param uId user id
      */
     @ResponseBody
     @RequestMapping(value = "show", method = RequestMethod.POST)
     public void show(HttpServletRequest request, HttpServletResponse response, String uId) {
-        log.info("current uId is " + uId);
+        log.info("Get Blog content by uId is " + uId);
         log.info(OperationEnum.SHOW_ALL_BLOG.getMessage());
-        List blogList = blogService.getAllBlog();
-        //使用fastJson生成JSONArray
+        List blogList = blogService.getBlogByUserId(Long.parseLong(uId));
+        //使用fastJson把List生成JSONArray
         JSONArray json = new JSONArray(blogList);
         try {
             response.setCharacterEncoding("UTF-8");
@@ -96,6 +98,22 @@ public class AdminController {
         } catch (IOException e) {
             log.error("json IO Exception", e);
         }
+    }
+
+    /**
+     * get blog by blog id
+     * @param request HttpServletRequest
+     * @param response HttpServletResponse
+     * @param tid blog id
+     */
+    @ResponseBody
+    @RequestMapping(value="showBlog", method = RequestMethod.POST)
+    public void showBlogByTid(HttpServletRequest request, HttpServletResponse response, int tid){
+        Long uId = (Long)request.getSession().getAttribute("uId");
+        log.info("Get blog by blogId: "+tid +" from user id: "+uId);
+        Map<String, Object> value = blogService.getBlogDetailByTid(tid);
+        response.setCharacterEncoding("UTF-8");
+        renderData(response, JSON.toJSONString(value));
     }
 
     /**
