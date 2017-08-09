@@ -4,7 +4,6 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.company.ssm.Enums.OperationEnum;
-
 import com.company.ssm.service.BlogService;
 import com.company.ssm.service.UsersService;
 import com.company.ssm.utils.PinYinUtil;
@@ -17,15 +16,20 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import javax.annotation.Resource;
-import javax.jms.Session;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import javax.websocket.Session;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
+import java.sql.Timestamp;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * Created by eli9 on 7/27/2017.
@@ -64,10 +68,13 @@ public class AdminController {
         if (user == null) {
             return;
         }
+
         //设置session属性
         Long uId = (Long)user.get("user_id");
-        request.getSession().setAttribute("uId", uId);
-        request.getSession().setAttribute("userName", userName);
+        HttpSession session = request.getSession();
+        session.setMaxInactiveInterval(30 * 60);
+        session.setAttribute("uId", uId);
+        session.setAttribute("userName", userName);
 
         Map<String, Object> result = new HashMap<>();
         result.put("uId", uId);
@@ -85,6 +92,12 @@ public class AdminController {
     @ResponseBody
     @RequestMapping(value = "show", method = RequestMethod.POST)
     public void show(HttpServletRequest request, HttpServletResponse response, String uId) {
+
+        if(!checkSessionVaild(request)){
+            renderData(response, getMapByValue("Session"));
+            return;
+        }
+
         log.info("Get Blog content by uId is " + uId);
         log.info(OperationEnum.SHOW_ALL_BLOG.getMessage());
         List blogList = blogService.getBlogByUserId(Long.parseLong(uId));
@@ -100,7 +113,7 @@ public class AdminController {
     }
 
     /**
-     * get blog by blog id
+     * get blog by blog id; when user click blog link, we show blog
      * @param request HttpServletRequest
      * @param response HttpServletResponse
      * @param tid blog id
@@ -108,6 +121,12 @@ public class AdminController {
     @ResponseBody
     @RequestMapping(value="showBlog", method = RequestMethod.POST)
     public void showBlogByTid(HttpServletRequest request, HttpServletResponse response, int tid){
+
+        if(!checkSessionVaild(request)){
+            renderData(response, getMapByValue("Session"));
+            return;
+        }
+
         Long uId = (Long)request.getSession().getAttribute("uId");
         log.info("Get blog by blogId: "+tid +" from user id: "+uId);
         Map<String, Object> value = blogService.getBlogDetailByTid(tid);
@@ -125,6 +144,11 @@ public class AdminController {
     @RequestMapping(value = "label", method = RequestMethod.POST)
     public void showLabel(HttpServletRequest request, HttpServletResponse response, String label) {
         try {
+            if(!checkSessionVaild(request)){
+               renderData(response, getMapByValue("Session"));
+                return;
+            }
+
             byte[] b = label.getBytes("UTF-8");
             String transCodingValue = new String(b, "UTF-8");
             log.info("back end search label: " + PinYinUtil.getPinYin(transCodingValue));
@@ -150,6 +174,12 @@ public class AdminController {
     @ResponseBody
     @RequestMapping(value = "blog", method = RequestMethod.POST)
     public void getBlog(HttpServletRequest request, HttpServletResponse response, int tid) {
+
+        if(!checkSessionVaild(request)){
+            renderData(response, getMapByValue("Session"));
+            return;
+        }
+
         try {
             Map<String, Object> blog = blogService.getBlogDetailByTid(tid);
             JSONObject json = new JSONObject(blog);
@@ -179,28 +209,45 @@ public class AdminController {
                          String desc,
                          String content,
                          String label){//标签 要求用空格隔开
-        HttpSession session = request.getSession();
-        int uid = (Integer)session.getAttribute("uId");
 
-        String userName = (String)session.getAttribute("userName");
+        if(!checkSessionVaild(request)){
+            renderData(response, getMapByValue("Session"));
+            return;
+        }
+
+        HttpSession session = request.getSession();
+        Object uid = session.getAttribute("uId");
+        Object userName = session.getAttribute("userName");
         String labelS = label.replace(" ", ",");
 
-        LocalDateTime createTime = LocalDateTime.now();
-        LocalDateTime alterTime = LocalDateTime.now();
+        Timestamp createTime = Timestamp.valueOf(LocalDateTime.now());
+        Timestamp alterTime = Timestamp.valueOf(LocalDateTime.now());
 
         if(content.isEmpty()){return;}//不能让数据库中的博客的内容为空
         if(blogId.isEmpty()) {//表示为新建博客
             //TODO Type类型的参数传入
             int type = 1001;//表示原创
 
-            int tid = blogService.addBlog(uid, title, userName, type, labelS, desc, content, createTime, alterTime);
+            int tid = blogService.addBlog((Long) uid, title, userName.toString(), type, labelS, desc, content, createTime, alterTime);
             if (tid == 0) {
                 log.error("BlogService insert blog failed");
             }
             outPut(response, (new Integer(tid)).toString());
         }else{
-            blogService.updateBlog(Integer.parseInt(blogId), title, label, content, desc, alterTime);
-            outPut(response, "success");
+            blogService.updateBlog(Long.parseLong(blogId), title, label, content, desc, alterTime);
+            outPut(response, getMapByValue("success"));
+        }
+    }
+
+
+    private boolean checkSessionVaild(HttpServletRequest request){
+        HttpSession session = request.getSession();
+        if(session == null){return false;}
+
+        if (session.getAttribute("uId") == null){
+            return false;
+        }else{
+            return true;
         }
     }
     /**
@@ -244,6 +291,23 @@ public class AdminController {
         }
     }
 
+    private String getMapJson(Map map){
+        if(map == null){
+            return null;
+        }
+        String result = JSON.toJSONString(map);
+        return result;
+    }
+
+    private String getMapByValue(String value){
+        Map<String, Object> map = new HashMap<>();
+        map.put("msg", value);
+        if(map == null){
+            return null;
+        }
+        String result = JSON.toJSONString(map);
+        return result;
+    }
     /**
      * 使用PrintWrite输出resutl
      * @param response

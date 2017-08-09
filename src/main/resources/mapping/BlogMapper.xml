@@ -49,6 +49,6 @@
 
     <update id="updateBlog" parameterType="com.company.ssm.model.Blog">
         UPDATE blog SET title=#{title}, label=#{label}, content=#{content}, decoration=#{decoration},
-        alter_time=#{alertTime} Where tid=#{tid};
+        alter_time=#{alter_time} Where tid=#{tid};
     </update>
 </mapper>

@@ -16,26 +16,28 @@ function func_init(){
         },
         async: false, //要求同步的操作
         success: function (data) {//处理返回的数据
-            if(data != null){
+            if(data.msg == "Session"){
+                func_error();
+            }else if(data == null) {
+                alert("后台返回数据错误");
+            }else{
                 //接收后台的数据
                 var obj = data;//解析json字符串为json对象形式
-                var trStr='';
-                for(var i=0; i<obj.length; i++){
+                var trStr = '';
+                for (var i = 0; i < obj.length; i++) {
                     trStr += '<tr><td>';
-                    trStr += '<h2 class="blogTitle"><a href="../backend/editor.html?tid='+obj[i].tid+'">';
-                    trStr += obj[i].title+'</a></h2>';
-                    trStr += '<span>'+obj[i].content.substring(0, +obj[i].content.indexOf("</p>")+4)+'</span>';
-                    trStr += '<div><a href="../backend/editor.html?tid='+obj[i].tid+'" target="_blank">阅读全文>></a></div>';
+                    trStr += '<h2 class="blogTitle"><a href="../backend/editor.html?tid=' + obj[i].tid + '">';
+                    trStr += obj[i].title + '</a></h2>';
+                    trStr += '<span>' + obj[i].content.substring(0, +obj[i].content.indexOf("</p>") + 4) + '</span>';
+                    trStr += '<div><a href="../backend/editor.html?tid=' + obj[i].tid + '" target="_blank">阅读全文>></a></div>';
                     trStr += '<hr/></td>';
                 }
                 var len = obj.length;//记录总数
-                var value = obj.length%pageSize;
-                var pageNum = (value==0?value:value+1);////count of pages
+                var value = obj.length % pageSize;
+                var pageNum = (value == 0 ? value : value + 1);////count of pages
                 $('#blogTable').html(trStr);//运用HTML的方法将拼接的table添加到dom
                 $('#spanTotalInfo').text(len);
                 $('#spanTotalPage').text(pageNum);
-            }else{
-                $("#valueShow").text("数据返回异常");
             }
         },
         error: function(){
@@ -74,4 +76,9 @@ function pageRoll(){//页面滚动函数
             return false;
         });
     });
+}
+
+function func_error(){
+    alert("Login info is expiration");
+    window.location.href="../backend/login.html";
 }

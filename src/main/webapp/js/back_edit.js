@@ -32,26 +32,28 @@ function func_submit(){
 }
 
 function submit_update(tid){ // submit when update blog
-    var title =  $("#input-38").attr("value");
+    var title =  $("#input-38").attr("text");
     // var title2 =  $("#input-38").val();//they can get value
-    var desc = $("#input-39").attr("value");
-    var label = $("#input-40").attr("value");
+    var desc = $("#input-39").attr("text");
+    var label = $("#input-40").attr("text");
     var content = editor.document.getBody().getHtml();
     $.ajax({
         type: "POST", url: "../admin/save", dataType:"JSON",
         data:{
-            "tid": tid,
+            "blogId": tid,
             "title": title.toString(),
             "desc": desc.toString(),
             "label": label.toString(),
             "content":content.toString()
         },
         success: function(data){
-            //TODO process when success
-            alert("success");
+            if(data.msg === "Session"){
+                func_error();
+            }else{
+
+            }
         },
-        error: function (data) {
-            //TODO process when failed
+        error: function () {
             alert("failed");
         }
     });
@@ -59,7 +61,6 @@ function submit_update(tid){ // submit when update blog
 
 function submit_create(){ //submit when create new blog
     var title =  $("#input-38").val();
-    alert(title);
     var desc = $("#input-39").attr("value");
     var label = $("#input-40").attr("value");
     var content = editor.document.getBody().getHtml();
@@ -73,17 +74,19 @@ function submit_create(){ //submit when create new blog
         },
         async:false,
         success: function(data){
-            //TODO process when success
-            alert("success");
+            if(data.msg == "Session"){
+                func_error();
+            }else{
+
+            }
         },
-        error: function (data) {
-            //TODO process when failed
+        error: function () {
             alert("failed");
         }
     });
 }
 
-//show blog
+//show blog detail when click blog link
 function func_show(tid) {
     $.ajax({
         type: "POST", url: "../admin/showBlog", dataType: "JSON",
@@ -93,16 +96,18 @@ function func_show(tid) {
         success: function (data) {
             if (data == null) {
                 alert("数据返回异常");
-            } else {
+            } else if(data.msg == "Session") {
+                func_error();
+            }else{
                 var obj = data;//解析json字符串为json对象形式
                 var title = obj.title;
                 var desc = obj.decoration;
                 var content = obj.content;
                 var label = obj.label.replace(","," ");
 
-                $("#input-38").attr("value",title);
-                $("#input-39").attr("value",desc);
-                $("#input-40").attr("value",label);
+                $("#input-38").text(title);
+                $("#input-39").text(desc);
+                $("#input-40").text(label);
                 editor.setData(content);
             }
         },
@@ -129,4 +134,9 @@ function func_enable(){
 //create blog
 function func_create(){
 
+}
+
+function func_error(){
+    alert("Login info is expiration");
+    window.location.href="../backend/login.html";
 }

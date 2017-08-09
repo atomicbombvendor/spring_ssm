@@ -9,6 +9,7 @@ import org.apache.log4j.Logger;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
@@ -87,15 +88,15 @@ public class BlogService {
      * @param alterTime
      * @return
      */
-    public int addBlog(int userId,
+    public int addBlog(Long userId,
                        String title,
                        String author,
-                       int type,
+                       Integer type,
                        String label,
                        String decoration,
                        String content,
-                       LocalDateTime createTime,
-                       LocalDateTime alterTime) {
+                       Timestamp createTime,
+                       Timestamp alterTime) {
         int tid = blogDao.addBlog(userId, title, author, type, label, decoration, content, createTime, alterTime);
         if (tid == 0) {
             log.error("Insert blog fail.");
@@ -113,12 +114,17 @@ public class BlogService {
      * @param decoration 描述
      * @param alertTime 修改时间
      */
-    public void updateBlog(int tid,
+    public void updateBlog(Long tid,
                            String title,
                            String label,
                            String content,
                            String decoration,
-                           LocalDateTime alertTime) {
-        blogDao.updateBlog(tid,title, label, content,decoration, alertTime);
+                           Timestamp alertTime) {
+        try {
+            blogDao.updateBlog(tid,title, label, content,decoration, alertTime);
+        }catch (Exception e){
+            log.error("Update blog exception", e);
+        }
+
     }
 }

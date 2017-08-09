@@ -4,6 +4,7 @@ import com.company.ssm.model.Blog;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
+import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
@@ -26,21 +27,21 @@ public interface BlogDao {
 
     List<Blog> getLabelBlog(@Param("label") String label);
 
-    int addBlog(@Param("user_id") int userId,
+    int addBlog(@Param("user_id") Long userId,
                 @Param("title") String title,
                 @Param("author") String author,
-                @Param("type") int type,
+                @Param("type") Integer type,
                 @Param("label") String label,
                 @Param("decoration") String decoration,
                 @Param("content") String content,
-                @Param("createTime") LocalDateTime createTime,
-                @Param("alter_time") LocalDateTime alterTime);
+                @Param("createTime") Timestamp createTime,
+                @Param("alter_time") Timestamp alterTime);
 
     int updateBlog(
-            @Param("tid") int tid,
+            @Param("tid") Long tid,
             @Param("title") String title,
             @Param("label") String label,
             @Param("content") String content,
             @Param("decoration") String decoration,
-            @Param("alter_time") LocalDateTime alertTime);
+            @Param("alter_time") Timestamp alertTime);
 }
