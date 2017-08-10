@@ -32,10 +32,10 @@ function func_submit(){
 }
 
 function submit_update(tid){ // submit when update blog
-    var title =  $("#input-38").attr("text");
+    var title =  $("input[id='input-38']").val();
     // var title2 =  $("#input-38").val();//they can get value
-    var desc = $("#input-39").attr("text");
-    var label = $("#input-40").attr("text");
+    var desc = $("input[id='input-39']").val();
+    var label = $("input[id='input-40']").val();
     var content = editor.document.getBody().getHtml();
     $.ajax({
         type: "POST", url: "../admin/save", dataType:"JSON",
@@ -47,10 +47,15 @@ function submit_update(tid){ // submit when update blog
             "content":content.toString()
         },
         success: function(data){
-            if(data.msg === "Session"){
+            var msg = data.msg;
+            if(func_contains(msg, "Session")){
                 func_error();
+            }else if(func_contains(msg, "uId")){
+                //提示更新成功，然后关闭页面。
+                var uId = data.msg.substr(4,7);
+                window.location.href="../backend/show.html?uId="+uId;
             }else{
-
+                alert(data.msg);
             }
         },
         error: function () {
@@ -60,9 +65,9 @@ function submit_update(tid){ // submit when update blog
 }
 
 function submit_create(){ //submit when create new blog
-    var title =  $("#input-38").val();
-    var desc = $("#input-39").attr("value");
-    var label = $("#input-40").attr("value");
+    var title =  $("input[id='input-38']").val();
+    var desc = $("input[id='input-39']").val();
+    var label = $("input[id='input-40']").val();
     var content = editor.document.getBody().getHtml();
     $.ajax({
         type: "POST", url: "../admin/saveBlog", dataType:"JSON",
@@ -74,7 +79,8 @@ function submit_create(){ //submit when create new blog
         },
         async:false,
         success: function(data){
-            if(data.msg == "Session"){
+            var msg = data.msg;
+            if(func_contains(msg, "Session")){
                 func_error();
             }else{
 
@@ -94,9 +100,11 @@ function func_show(tid) {
             "tid": tid
         },
         success: function (data) {
+            var obj = data;
+            var msg = obj.msg;
             if (data == null) {
                 alert("数据返回异常");
-            } else if(data.msg == "Session") {
+            } else if(func_contains(msg, "Session")) {
                 func_error();
             }else{
                 var obj = data;//解析json字符串为json对象形式
@@ -105,9 +113,9 @@ function func_show(tid) {
                 var content = obj.content;
                 var label = obj.label.replace(","," ");
 
-                $("#input-38").text(title);
-                $("#input-39").text(desc);
-                $("#input-40").text(label);
+                $("#input-38").val(title);
+                $("#input-39").val(desc);
+                $("#input-40").val(label);
                 editor.setData(content);
             }
         },
@@ -139,4 +147,16 @@ function func_create(){
 function func_error(){
     alert("Login info is expiration");
     window.location.href="../backend/login.html";
+}
+
+function func_contains(msg, value){
+    var v1 = msg+'';
+    var v2 = value;
+    if(v1.indexOf(v2) != -1 ){//-1 means not find
+        return true;
+    }
+    else{
+        return false;
+    }
+
 }

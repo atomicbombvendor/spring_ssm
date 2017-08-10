@@ -4,6 +4,10 @@
 
 $(document).ready(function(){
     func_init();
+    $.getScript("../js/page.js");//加载JS文件
+    $.getScript("../js/page.js", function () {
+        hide();
+    });
     pageRoll();
 });
 
@@ -59,8 +63,7 @@ function pageRoll(){//页面滚动函数
             if ($(window).scrollTop()>100){
                 $("#back-to-top").fadeIn(500);
             }
-            else
-            {
+            else {
                 $("#back-to-top").fadeOut(500);
             }
         });

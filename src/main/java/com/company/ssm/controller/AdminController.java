@@ -19,12 +19,10 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import javax.websocket.Session;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
 import java.sql.Timestamp;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -93,8 +91,9 @@ public class AdminController {
     @RequestMapping(value = "show", method = RequestMethod.POST)
     public void show(HttpServletRequest request, HttpServletResponse response, String uId) {
 
-        if(!checkSessionVaild(request)){
-            renderData(response, getMapByValue("Session"));
+        if(!checkSessionValid(request)){
+            String value = getJSONString(getMsg("Session"));
+            renderData(response, value);
             return;
         }
 
@@ -122,8 +121,9 @@ public class AdminController {
     @RequestMapping(value="showBlog", method = RequestMethod.POST)
     public void showBlogByTid(HttpServletRequest request, HttpServletResponse response, int tid){
 
-        if(!checkSessionVaild(request)){
-            renderData(response, getMapByValue("Session"));
+        if(!checkSessionValid(request)){
+            String value = getJSONString(getMsg("Session"));
+            renderData(response, value);
             return;
         }
 
@@ -144,8 +144,9 @@ public class AdminController {
     @RequestMapping(value = "label", method = RequestMethod.POST)
     public void showLabel(HttpServletRequest request, HttpServletResponse response, String label) {
         try {
-            if(!checkSessionVaild(request)){
-               renderData(response, getMapByValue("Session"));
+            if(!checkSessionValid(request)){
+                String value = getJSONString(getMsg("Session"));
+                renderData(response, value);
                 return;
             }
 
@@ -175,8 +176,9 @@ public class AdminController {
     @RequestMapping(value = "blog", method = RequestMethod.POST)
     public void getBlog(HttpServletRequest request, HttpServletResponse response, int tid) {
 
-        if(!checkSessionVaild(request)){
-            renderData(response, getMapByValue("Session"));
+        if(!checkSessionValid(request)){
+            String value = getJSONString(getMsg("Session"));
+            renderData(response, value);
             return;
         }
 
@@ -210,8 +212,9 @@ public class AdminController {
                          String content,
                          String label){//标签 要求用空格隔开
 
-        if(!checkSessionVaild(request)){
-            renderData(response, getMapByValue("Session"));
+        if(!checkSessionValid(request)){
+            String value = getJSONString(getMsg("Session"));
+            renderData(response, value);
             return;
         }
 
@@ -232,15 +235,17 @@ public class AdminController {
             if (tid == 0) {
                 log.error("BlogService insert blog failed");
             }
-            outPut(response, (new Integer(tid)).toString());
+            String value = getJSONString(getMsg(tid+""));
+            renderData(response, value);
         }else{
             blogService.updateBlog(Long.parseLong(blogId), title, label, content, desc, alterTime);
-            outPut(response, getMapByValue("success"));
+            String value = getJSONString(getMsg("uId:"+uid));
+            renderData(response, value);
         }
     }
 
 
-    private boolean checkSessionVaild(HttpServletRequest request){
+    private boolean checkSessionValid(HttpServletRequest request){
         HttpSession session = request.getSession();
         if(session == null){return false;}
 
@@ -281,6 +286,8 @@ public class AdminController {
         try {
             pw = response.getWriter();
             pw.print(data);
+            //print方法就是调用write方法实现的，也就是将object转换成String了而已。
+            //还有就是print方法提供了多种数据类型，而write都通过转换，大多数变为字符串输出了
         } catch (IOException e) {
             e.printStackTrace();
         } finally {
@@ -291,37 +298,13 @@ public class AdminController {
         }
     }
 
-    private String getMapJson(Map map){
-        if(map == null){
-            return null;
-        }
-        String result = JSON.toJSONString(map);
-        return result;
+    private String getJSONString(Map m){
+        return JSON.toJSONString(m);
     }
 
-    private String getMapByValue(String value){
+    private Map<String, Object> getMsg(String value){
         Map<String, Object> map = new HashMap<>();
         map.put("msg", value);
-        if(map == null){
-            return null;
-        }
-        String result = JSON.toJSONString(map);
-        return result;
-    }
-    /**
-     * 使用PrintWrite输出resutl
-     * @param response
-     * @param result
-     */
-    private void outPut(HttpServletResponse response, String result){
-        PrintWriter pw = null;
-        try {
-            pw = response.getWriter();
-            pw.write(JSON.toJSONString(result));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }finally {
-            pw.flush();pw.close();
-        }
+        return map;
     }
 }
