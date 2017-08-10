@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8" http-equiv="X-UA-Compatible" content="IE=Edge">
+    <title></title>
+    <!-- 引用bootstrap-->
+    <!-- 引用css文件-->
+    <link rel="stylesheet" href="../bootstrap/css/bootstrap.min.css">
+    <!-- jQuery (Bootstrap 的 JavaScript 插件需要引入 jQuery) -->
+    <script src="../bootstrap/js/jquery-3.2.1.min.js"></script>
+    <!-- 包括所有已编译的插件 -->
+    <script src="../bootstrap/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="../css/index.css">
+    <script src="../js/back_preview.js"></script>
+</head>
+<body>
+<!-- 导航栏开始-->
+<header id="top">
+    <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse"
+                        data-target="#example-navbar-collapse">
+                    <span class="sr-only">切换导航</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="showBlog">Bomb</a>
+            </div>
+            <div class="collapse navbar-collapse" id="example-navbar-collapse">
+                <ul class="nav navbar-nav">
+                    <li><a href="timeline.html?labelName=Java">Java</a></li>
+                    <li><a href="timeline.html?labelName=测试">测试</a></li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            Nothing <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">Nothing</a></li>
+                            <li class="divider"></li>
+                            <li><a href="#">Nothing</a></li>
+                        </ul>
+                    </li>
+                </ul>
+                <form class="navbar-form navbar-right" role="search">
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Search">
+                    </div>
+                    <button type="submit" class="btn btn-default btn-sm">搜索</button>
+                </form>
+            </div>
+            <div>
+            </div>
+        </div>
+    </nav>
+</header>
+<!-- 导航栏结束-->
+<div class="row">
+<div class="col-md-6 col-md-offset-3">
+<h2 class="text-center"></h2>
+<p class="text-center">
+<em><span class="post-meta-item-text">发表于 </span>
+<time id="create" title="创建于" itemprop="dateCreated datePublished" datetime=""></time> | </em>
+<em><span class="post-meta-item-text">更新于 </span>
+<time id="update" title="最后修改" itemprop="dateCreated datePublished" datetime=""></time> | </em>
+<em><span class="post-meta-item-text">分类 </span>
+<a id="label" href=""></a>
+</em>
+<em><span> | 添加者 </span><span id="userName"></span></em>
+</p>
+<p class="text-center"><em id="desc"></em></p>
+<article id="content"></article>
+</div>
+</div>
+</body>
+</html>

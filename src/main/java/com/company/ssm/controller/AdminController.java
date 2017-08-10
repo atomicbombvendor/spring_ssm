@@ -244,7 +244,6 @@ public class AdminController {
         }
     }
 
-
     private boolean checkSessionValid(HttpServletRequest request){
         HttpSession session = request.getSession();
         if(session == null){return false;}

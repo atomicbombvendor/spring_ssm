@@ -33,7 +33,8 @@ function func_init(){
                     trStr += '<h2 class="blogTitle"><a href="../backend/editor.html?tid=' + obj[i].tid + '">';
                     trStr += obj[i].title + '</a></h2>';
                     trStr += '<span>' + obj[i].content.substring(0, +obj[i].content.indexOf("</p>") + 4) + '</span>';
-                    trStr += '<div><a href="../backend/editor.html?tid=' + obj[i].tid + '" target="_blank">阅读全文>></a></div>';
+                    trStr += '<div><a href="../backend/editor.html?tid=' + obj[i].tid + '" target="_blank">修改>></a>';
+                    trStr += '&nbsp;&nbsp;&nbsp;&nbsp;<a href="../backend/preview.html?tid=' + obj[i].tid + '" target="_blank">预览>></a></div>';
                     trStr += '<hr/></td>';
                 }
                 var len = obj.length;//记录总数
