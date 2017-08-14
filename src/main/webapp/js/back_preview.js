@@ -21,16 +21,28 @@ function func_init() {
                 var title = obj.title;
                 var desc = obj.decoration;
                 var content = obj.content;
-                var userName = obj.userName;
-                var label = obj.label.replace(","," ");
-                var createTime = obj.createTime;
-                var updateTime = obj.updateTime;
+                var userName = obj.user_name;
+                var label = new Array();
+                label = obj.label.split(" ");
+                var createTime = getDate(obj.create_time);
+                var updateTime = getDate(obj.alter_time);
 
                 document.title = title;
-                $("#content").val(content);
-                $("#desc").val(desc);
-                $("#userName").val(userName);
-                $("#label").val(label);
+                $("#title").text(title);
+                $("#content").html(content);
+                $("#desc").html(desc);
+                $("#userName").text(userName);
+                var labelValue='<span class="post-meta-item-text">分类 ';
+                for(var i=0; i<label.length;  i++){
+                    labelValue += '&nbsp;';
+                    labelValue += '<a href="../backend/timeline.html?labelName='+label[i]+'">'+label[i]+'</a>';
+                }
+                labelValue += '</span>';
+                $("#label").html(labelValue);
+                $("#create").text(createTime);
+                $("#update").text(updateTime);
+                $("#create").attr("datetime",createTime);
+                $("#update").attr("datetime",updateTime);
             }
         },
         error: function () {
@@ -74,6 +86,27 @@ function pageRoll(){
 function func_error(){
     alert("Login info is expiration");
     window.location.href="../backend/login.html";
+}
+
+//获得年月日 得到日期
+function getDate(str){
+    var oDate = new Date(str),
+        oYear = oDate.getFullYear(),
+        oMonth = oDate.getMonth()+1,
+        oDay = oDate.getDate(),
+        oHour = oDate.getHours(),
+        oMin = oDate.getMinutes(),
+        oSen = oDate.getSeconds(),
+        oTime = oYear +'-'+ getZeroFormat(oMonth) +'-'+ getZeroFormat(oDay);//最后拼接时间
+    return oTime;
+};
+
+//补0操作
+function getZeroFormat(num){
+    if(parseInt(num) < 10){
+        num = '0'+num;
+    }
+    return num;
 }
 /**
  * Created by eli9 on 8/10/2017.
