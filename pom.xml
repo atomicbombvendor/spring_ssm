@@ -308,13 +308,13 @@
       <version>2.3.23</version>
     </dependency>
 
-    <!-- 用来把list或者map打包成json对象-->
-    <!-- https://mvnrepository.com/artifact/net.sf.json-lib/json-lib -->
-    <dependency>
-      <groupId>net.sf.json-lib</groupId>
-      <artifactId>json-lib</artifactId>
-      <version>2.4</version>
-    </dependency>
+    <!--&lt;!&ndash; 用来把list或者map打包成json对象&ndash;&gt;-->
+    <!--&lt;!&ndash; https://mvnrepository.com/artifact/net.sf.json-lib/json-lib &ndash;&gt;-->
+    <!--<dependency>-->
+      <!--<groupId>net.sf.json-lib</groupId>-->
+      <!--<artifactId>json-lib</artifactId>-->
+      <!--<version>2.4</version>-->
+    <!--</dependency>-->
 
     <!--拼音包-->
     <!-- https://mvnrepository.com/artifact/com.belerweb/pinyin4j -->
