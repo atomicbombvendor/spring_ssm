@@ -43,18 +43,24 @@
 
     <!-- spring mvc servlet-->
     <servlet>
+        <!-- servlet's name-->
         <servlet-name>SpringMVC</servlet-name>
+        <!-- servlet 对应的Java类-->
         <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+        <!--当前Servlet的参数信息-->
         <init-param>
+            <!--ContextConfigLocation是参数名称，该参数的值包含了SpringMVC的配置文件的名称-->
             <param-name>contextConfigLocation</param-name>
             <param-value>classpath:spring-mvc.xml</param-value>
         </init-param>
+        <!--在web应用启动时立即加载servlet-->
         <load-on-startup>1</load-on-startup>
         <async-supported>true</async-supported>
     </servlet>
     <servlet-mapping>
+        <!--请求的servlet的名称-->
         <servlet-name>SpringMVC</servlet-name>
-        <!-- 此处也可以配置成 *.do 形式 -->
+        <!-- 此处也可以配置成 *.do 形式；servlet监听当前域的所有请求 -->
         <url-pattern>/</url-pattern>
     </servlet-mapping>
 
